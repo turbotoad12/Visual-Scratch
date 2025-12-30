@@ -1,20 +1,63 @@
-﻿using System;
+﻿using Krypton.Docking;
+using Krypton.Navigator;
+using Krypton.Ribbon;
+using Krypton.Toolkit;
+using Krypton.Workspace;
+using Microsoft.Web.WebView2.WinForms;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Visual_Scratch
 {
-    public partial class MainForm : Form
+    public partial class MainForm : KryptonForm
     {
+
         public MainForm()
         {
             InitializeComponent();
+        }
+        private KryptonPage NewDocument(string path)
+        {
+            string name = Path.GetFileNameWithoutExtension(path);
+            KryptonPage page = NewPage(name, 0, new Sb3Editor(path));
+
+            // Document pages cannot be docked or auto hidden
+            page.ClearFlags(KryptonPageFlags.DockingAllowAutoHidden | KryptonPageFlags.DockingAllowDocked);
+
+            return page;
+        }
+
+        private KryptonPage NewPage(string name, int image, Control content, Size? autoHiddenSizeHint = null)
+        {
+            // Create new page with title and image
+            var p = new KryptonPage
+            {
+                Text = name,
+                TextTitle = name,
+                TextDescription = name
+            };
+
+            // Add the control for display inside the page
+            content.Dock = DockStyle.Fill;
+            p.Controls.Add(content);
+
+            if (autoHiddenSizeHint.HasValue)
+            {
+                p.AutoHiddenSlideSize = autoHiddenSizeHint.Value;
+            }
+            return p;
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // Setup docking functionality
+            KryptonDockingWorkspace w = kryptonDockingManager1.ManageWorkspace(kryptonDockableWorkspace1);
+            kryptonDockingManager1.ManageControl(kryptonPanel1, w);
+            kryptonDockingManager1.ManageFloating(this);
+
+            
         }
     }
 }
