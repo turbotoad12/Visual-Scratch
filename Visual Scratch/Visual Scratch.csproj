@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{96798134-785D-497F-9C45-726474540055}</ProjectGuid>
+    <ProjectGuid>{4C6ADE4C-B8CB-4C21-94F3-4D02F755D346}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Visual_Scratch</RootNamespace>
     <AssemblyName>Visual Scratch</AssemblyName>
@@ -46,17 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -94,9 +91,6 @@
     </PackageReference>
     <PackageReference Include="Krypton.Workspace">
       <Version>100.25.11.328</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Web.WebView2">
-      <Version>1.0.3650.58</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
