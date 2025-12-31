@@ -31,9 +31,9 @@ A Windows desktop application that provides a modern, integrated development env
 
 ### Prerequisites
 
-- Visual Studio 2019 or later
+- Visual Studio 2022 or later
 - .NET Framework 4.8 SDK
-- Windows Installer XML (WiX) Toolset (optional, for building the installer)
+- Windows Installer Projects Extension (optional, for building the installer)
 
 ### Build Steps
 
@@ -75,21 +75,6 @@ The project uses the following NuGet packages:
 3. **Edit in TurboWarp**:
    - Projects automatically open in the integrated TurboWarp editor
    - Use all TurboWarp features to create your Scratch project
-
-## Project Structure
-
-```
-Visual-Scratch/
-├── Assets/                  # Application icons and logos
-├── Installer/              # Windows Installer project
-├── Visual Scratch/         # Main application source
-│   ├── Core/              # Core functionality (Project management)
-│   ├── Documents/         # Document editors (Sb3Editor)
-│   ├── Forms/             # Application forms and dialogs
-│   ├── Properties/        # Assembly properties and resources
-│   └── Resources/         # Embedded resources (icons, images)
-└── README.md              # This file
-```
 
 ## License
 
