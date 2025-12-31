@@ -79,5 +79,35 @@ namespace Visual_Scratch.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Visual_Scratch_Icon_256x256 {
+            get {
+                object obj = ResourceManager.GetObject("Visual Scratch Icon 256x256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Visual_Scratch_Logo {
+            get {
+                object obj = ResourceManager.GetObject("Visual Scratch Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Visual_Scratch_Logo_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Visual Scratch Logo 32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
