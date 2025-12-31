@@ -57,7 +57,19 @@ namespace Visual_Scratch
             kryptonDockingManager1.ManageControl(kryptonPanel1, w);
             kryptonDockingManager1.ManageFloating(this);
 
-            
+
+        }
+        // Create a project
+        private void kryptonRibbonGroupButton1_Click(object sender, EventArgs e)
+        {
+            // open new form (New.cs)
+            var newform = new Forms.Project.New();
+            var result = newform.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Open project here.
+            }
+
         }
     }
 }
