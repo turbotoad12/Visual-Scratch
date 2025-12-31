@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Krypton.Toolkit;
 
 namespace Visual_Scratch.Forms.Project
 {
-    public partial class New : Form
+    public partial class New : KryptonForm
     {
         public New()
         {
