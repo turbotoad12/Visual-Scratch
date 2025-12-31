@@ -91,7 +91,7 @@ Copyright © 2025 TurboToad12
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit issues or pull requests.
+Contributions are welcome! Submit issues or pull requests to help improve the project.
 
 ## Support
 
