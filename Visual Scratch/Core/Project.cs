@@ -82,5 +82,27 @@ namespace Visual_Scratch.Core
         {
             return JsonSerializer.Serialize(this);
         }
+
+        public static Project CreateProject(string path, string name, string author, string description)
+        {
+
+            Project project = new Project()
+            {
+                Sb3Path = Path.Combine(path, "game.sb3"),
+                Info = new Metadata
+                {
+                    Name = name,
+                    Author = author,
+                    Description = description
+                }
+            };
+            // Create Project stuffs here
+            Directory.CreateDirectory(path);
+            //TODO: Add the template sb3 file
+            // for now , just create an empty file
+            File.WriteAllText(project.Sb3Path, "TEMPORARY");
+            return project;
+        }
     }
+    
 }
