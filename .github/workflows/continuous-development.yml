@@ -29,7 +29,6 @@ jobs:
           msbuild "Visual Scratch/Visual Scratch.csproj"
           /p:Configuration=Debug
           /p:Platform=AnyCPU
-          /p:OutputPath=bin/Debug
           /verbosity:minimal
 
       - name: Build Release configuration
@@ -37,7 +36,6 @@ jobs:
           msbuild "Visual Scratch/Visual Scratch.csproj"
           /p:Configuration=Release
           /p:Platform=AnyCPU
-          /p:OutputPath=bin/Release
           /verbosity:minimal
 
       - name: Upload Debug artifacts
