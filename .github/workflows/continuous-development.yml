@@ -19,10 +19,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Restore NuGet packages
-        run: >
-          msbuild "Visual Scratch/Visual Scratch.csproj"
-          /t:Restore
-          /p:Configuration=Release
+        run: msbuild "Visual Scratch/Visual Scratch.csproj" /t:Restore
 
       - name: Build Debug configuration
         run: >
@@ -44,6 +41,7 @@ jobs:
           name: visual-scratch-debug
           path: Visual Scratch/bin/Debug/
           retention-days: 7
+          if-no-files-found: warn
 
       - name: Upload Release artifacts
         uses: actions/upload-artifact@v4
@@ -51,3 +49,4 @@ jobs:
           name: visual-scratch-release
           path: Visual Scratch/bin/Release/
           retention-days: 30
+          if-no-files-found: warn
