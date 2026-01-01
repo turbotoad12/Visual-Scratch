@@ -138,18 +138,8 @@ namespace Visual_Scratch.Core
             };
             // Create Project stuffs here
             Directory.CreateDirectory(path);
-            
-            var templatePath = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-                "Visual Scratch",
-                "template - empty.sb3");
-            
-            if (!File.Exists(templatePath))
-            {
-                throw new FileNotFoundException($"Template file not found: {templatePath}");
-            }
-            
-            File.Copy(templatePath, project.Sb3Path, overwrite: true);
+
+            File.WriteAllBytes(Path.Combine(project.Sb3Path), Properties.Resources.template_empty_sb3);
             
             return project;
         }
