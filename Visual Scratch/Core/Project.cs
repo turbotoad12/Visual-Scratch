@@ -10,7 +10,6 @@ namespace Visual_Scratch.Core
         {
             WriteIndented = true,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            // AllowTrailingCommas is NOT supported on .NET Framework
         };
 
         public static void Save<T>(string path, T data)
@@ -45,7 +44,7 @@ namespace Visual_Scratch.Core
 
     public class Project
     {
-        // Helps you evolve the format later
+        // Helps evolve the format later
         public int Version { get; set; } = 1;
 
         public Metadata Info { get; set; } = new Metadata();
@@ -99,8 +98,13 @@ namespace Visual_Scratch.Core
             // Create Project stuffs here
             Directory.CreateDirectory(path);
             //TODO: Add the template sb3 file
-            // for now , just create an empty file
-            File.WriteAllText(project.Sb3Path, "TEMPORARY");
+            // Copy from the Visual Studio Commen Data folder
+            using (var data = File.ReadAllBytes(Path.Combine("C:/Program Files (x86)/Common Files/Visual Scratch", "template - empty.sb3")))
+            {
+                File.WriteAllBytes(project.Sb3Path, data);
+            }
+            // Save the project file
+            project.SaveToFile(Path.Combine(path, name + ".vsproj"));
             return project;
         }
     }
