@@ -15,7 +15,7 @@ namespace Visual_Scratch
 {
     public partial class MainForm : KryptonForm
     {
-
+        private KryptonPage homepage = null;
         public MainForm()
         {
             InitializeComponent();
@@ -39,7 +39,39 @@ namespace Visual_Scratch
 
             return page;
         }
+        private void State_Project()
+        {
+            // Remove all documents
+            // Remove all documents
+            foreach (KryptonPage page in kryptonDockableWorkspace1.AllPages())
+            {
+                kryptonDockableWorkspace1.ClosePage(page);
+            }
 
+            // Show/Hide ribbon tabs
+            kryptonRibbonTabHome.Visible = true;
+            kryptonRibbonTabProject.Visible = false;
+            kryptonRibbonTabPublish.Visible = true;
+
+            // Configure ribbon for project state
+            kryptonRibbon1.SelectedTab = kryptonRibbonTabHome;
+        }
+        private void State_Home()
+        {
+            // Remove all documents
+            foreach (KryptonPage page in kryptonDockableWorkspace1.AllPages())
+            {
+                kryptonDockableWorkspace1.ClosePage(page);
+            }
+            // Add homepage
+            kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { homepage });
+            // Show/Hide ribbon tabs
+            kryptonRibbonTabHome.Visible = true;
+            kryptonRibbonTabProject.Visible = false;
+            kryptonRibbonTabPublish.Visible = false;
+            // Configure ribbon for home state
+            kryptonRibbon1.SelectedTab = kryptonRibbonTabHome;
+        }
         private KryptonPage NewPage(string name, int image, Control content, Size? autoHiddenSizeHint = null)
         {
             // Create new page with title and image
@@ -69,8 +101,30 @@ namespace Visual_Scratch
 
             // How to add document:  kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewDocument(), NewDocument() });
             // just if you need to show someone doucment: kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewDocument("C:/Users/jones/Downloads/Project.sb3") });
-            var homepage = NewHomePage();
+            homepage = NewHomePage();
             kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { homepage });
+        }
+        private void LoadProject(Core.Project project)
+        {
+            if (project != null)
+            {
+                // Open the main project file (assumed to be .sb3 for now)
+                if (File.Exists(project.Sb3Path))
+                {
+                    var sb3Page = NewSb3Editor(project.Sb3Path);
+                    State_Project();
+                    kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { sb3Page });
+                }
+                else
+                {
+                    KryptonMessageBox.Show("Main project file not found", "Error");
+                    State_Home();
+                }
+            }
+            else
+            {
+                KryptonMessageBox.Show("Failed to load project: ", "Error");
+            }
         }
         // Create a project
         private void kryptonRibbonGroupButton1_Click(object sender, EventArgs e)
@@ -80,9 +134,22 @@ namespace Visual_Scratch
             var result = newform.ShowDialog();
             if (result == DialogResult.OK)
             {
-                // Open project here.
+                LoadProject(newform.project);
             }
 
+        }
+        // Open an existing project
+        private void kryptonRibbonGroupButton2_Click(object sender, EventArgs e)
+        {
+            // open file dialog to select .vsproj file
+            KryptonOpenFileDialog openFileDialog = new KryptonOpenFileDialog();
+            openFileDialog.Filter = "Visual Scratch Project (*.vsproj)|*.vsproj";
+            openFileDialog.Title = "Open Visual Scratch Project";
+            openFileDialog.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Scratch", "Projects");
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadProject(Core.Project.LoadFromFile(openFileDialog.FileName));
+            }
         }
     }
 }

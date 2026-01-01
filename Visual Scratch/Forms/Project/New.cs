@@ -14,6 +14,7 @@ namespace Visual_Scratch.Forms.Project
 {
     public partial class New : KryptonForm
     {
+        public Core.Project project = new Core.Project();
         public New()
         {
             InitializeComponent();
@@ -22,10 +23,9 @@ namespace Visual_Scratch.Forms.Project
         private void New_Load(object sender, EventArgs e)
         {
             // Set default project path to Documents/Visual Scratch/Projects
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string defaultProjectPath = System.IO.Path.Combine(documentsPath, "Visual Scratch", "Projects");
+            string defaultProjectPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Scratch", "Projects");
             // Then set the textbox text to that path
-            kryptonTextBox4.Text = Path.Combine(defaultProjectPath, "ScratchProject");
+            kryptonTextBox4.Text = Path.Combine(defaultProjectPath, "Scratch Project");
         }
 
         private void kryptonHeaderGroup1_Paint(object sender, PaintEventArgs e)
@@ -65,12 +65,12 @@ namespace Visual_Scratch.Forms.Project
         //browse button
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            Core.Project.CreateProject(kryptonTextBox4.Text, kryptonTextBox1.Text, kryptonTextBox3.Text, kryptonTextBox2.Text);
+            project = Core.Project.CreateProject(kryptonTextBox4.Text, kryptonTextBox1.Text, kryptonTextBox3.Text, kryptonTextBox2.Text);
 
             this.Close();
         }
@@ -78,6 +78,11 @@ namespace Visual_Scratch.Forms.Project
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void kryptonTextBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

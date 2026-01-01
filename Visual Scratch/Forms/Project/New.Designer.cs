@@ -51,7 +51,7 @@
             // 
             // kryptonManager1
             // 
-            this.kryptonManager1.GlobalPaletteMode = Krypton.Toolkit.PaletteMode.Office2010Blue;
+            this.kryptonManager1.GlobalPaletteMode = Krypton.Toolkit.PaletteMode.Office2010Silver;
             this.kryptonManager1.ToolkitStrings.MessageBoxStrings.LessDetails = "L&ess Details...";
             this.kryptonManager1.ToolkitStrings.MessageBoxStrings.MoreDetails = "&More Details...";
             // 
@@ -146,6 +146,7 @@
             this.kryptonTextBox4.Size = new System.Drawing.Size(285, 23);
             this.kryptonTextBox4.TabIndex = 10;
             this.kryptonTextBox4.Text = "kryptonTextBox4";
+            this.kryptonTextBox4.TextChanged += new System.EventHandler(this.kryptonTextBox4_TextChanged);
             // 
             // kryptonButton1
             // 

@@ -141,6 +141,7 @@ namespace Visual_Scratch.Core
 
             File.WriteAllBytes(Path.Combine(project.Sb3Path), Properties.Resources.template_empty_sb3);
             
+            project.SaveToFile(Path.Combine(path, "project.vsproj"));
             return project;
         }
     }
