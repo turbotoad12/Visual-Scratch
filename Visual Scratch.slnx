@@ -2,5 +2,6 @@
   <Project Path="Installer/Installer.vdproj" Type="Installer">
     <Build />
   </Project>
+  <Project Path="UnitTests/UnitTest.csproj" Id="f097eef2-2d3e-4814-9c39-419b05dfbe20" />
   <Project Path="Visual Scratch/Visual Scratch.csproj" Id="4c6ade4c-b8cb-4c21-94f3-4d02f755d346" />
 </Solution>
