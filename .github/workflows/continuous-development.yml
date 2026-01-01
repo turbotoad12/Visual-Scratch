@@ -23,12 +23,37 @@ jobs:
       - name: Restore NuGet packages
         run: msbuild "Visual Scratch/Visual Scratch.csproj" /t:Restore
 
+      - name: Restore NuGet packages for UnitTests
+        run: msbuild "UnitTests/UnitTest.csproj" /t:Restore
+
       - name: Build Debug configuration
         run: >
           msbuild "Visual Scratch/Visual Scratch.csproj"
           /p:Configuration=Debug
           /p:Platform=AnyCPU
           /verbosity:minimal
+
+      - name: Build UnitTests Debug configuration
+        run: >
+          msbuild "UnitTests/UnitTest.csproj"
+          /p:Configuration=Debug
+          /p:Platform=AnyCPU
+          /verbosity:minimal
+
+      - name: Run Unit Tests
+        run: >
+          vstest.console.exe "UnitTests/bin/Debug/UnitTests.dll"
+          /Logger:trx
+          /ResultsDirectory:TestResults
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults/*.trx
+          retention-days: 30
+          if-no-files-found: warn
 
       - name: Build Release configuration
         run: >
