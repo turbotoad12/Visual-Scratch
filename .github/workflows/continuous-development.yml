@@ -18,13 +18,11 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v2
-
       - name: Restore NuGet packages
         run: >
-          nuget restore "Visual Scratch/Visual Scratch.csproj"
-          -PackagesDirectory packages
+          msbuild "Visual Scratch/Visual Scratch.csproj"
+          /t:Restore
+          /p:Configuration=Release
 
       - name: Build Debug configuration
         run: >
