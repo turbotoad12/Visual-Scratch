@@ -97,7 +97,6 @@ namespace Visual_Scratch.Core
                 }
             };
             // Create Project stuffs here
-            Directory.CreateDirectory(path);
             //TODO: Add the template sb3 file
             // for now , just create an empty file
             File.WriteAllText(project.Sb3Path, "TEMPORARY");
