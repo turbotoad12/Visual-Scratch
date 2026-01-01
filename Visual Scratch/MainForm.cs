@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Visual_Scratch.Documents;
 
 namespace Visual_Scratch
 {
@@ -19,10 +20,19 @@ namespace Visual_Scratch
         {
             InitializeComponent();
         }
-        private KryptonPage NewDocument(string path)
+        private KryptonPage NewSb3Editor(string path)
         {
             string name = Path.GetFileNameWithoutExtension(path);
             KryptonPage page = NewPage(name, 0, new Sb3Editor(path));
+
+            // Document pages cannot be docked or auto hidden
+            page.ClearFlags(KryptonPageFlags.DockingAllowAutoHidden | KryptonPageFlags.DockingAllowDocked);
+
+            return page;
+        }
+        private KryptonPage NewHomePage()
+        {
+            KryptonPage page = NewPage("Home", 0, new Home());
 
             // Document pages cannot be docked or auto hidden
             page.ClearFlags(KryptonPageFlags.DockingAllowAutoHidden | KryptonPageFlags.DockingAllowDocked);
@@ -57,7 +67,9 @@ namespace Visual_Scratch
             kryptonDockingManager1.ManageControl(kryptonPanel1, w);
             kryptonDockingManager1.ManageFloating(this);
 
-
+            // How to add document:  kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewDocument(), NewDocument() });
+            // just if you need to show someone doucment: kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewDocument("C:/Users/jones/Downloads/Project.sb3") });
+            kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewHomePage() });
         }
         // Create a project
         private void kryptonRibbonGroupButton1_Click(object sender, EventArgs e)

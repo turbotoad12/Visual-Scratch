@@ -99,6 +99,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Project.cs" />
+    <Compile Include="Documents\Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Documents\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Project\New.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     <Compile Include="Documents\Sb3Editor.Designer.cs">
       <DependentUpon>Sb3Editor.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Documents\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Project\New.resx">
       <DependentUpon>New.cs</DependentUpon>
     </EmbeddedResource>
