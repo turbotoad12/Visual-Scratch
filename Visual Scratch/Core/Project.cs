@@ -97,14 +97,19 @@ namespace Visual_Scratch.Core
             };
             // Create Project stuffs here
             Directory.CreateDirectory(path);
-            //TODO: Add the template sb3 file
-            // Copy from the Visual Studio Commen Data folder
-            using (var data = File.ReadAllBytes(Path.Combine("C:/Program Files (x86)/Common Files/Visual Scratch", "template - empty.sb3")))
+            
+            var templatePath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                "Visual Scratch",
+                "template - empty.sb3");
+            
+            if (!File.Exists(templatePath))
             {
-                File.WriteAllBytes(project.Sb3Path, data);
+                throw new FileNotFoundException($"Template file not found: {templatePath}");
             }
-            // Save the project file
-            project.SaveToFile(Path.Combine(path, name + ".vsproj"));
+            
+            File.Copy(templatePath, project.Sb3Path, overwrite: true);
+            
             return project;
         }
     }
