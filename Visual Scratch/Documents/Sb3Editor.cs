@@ -44,7 +44,7 @@ namespace Visual_Scratch
             {
                 LoadSb3IntoTurboWarp(webView21, Sb3FilePath);
             };
-            webView21.CoreWebView2.Navigate("https://turbowarp.org/editor");
+            webView21.CoreWebView2.Navigate("https://editor.scratchbox.dev/editor.html");
         }
     }
 }
