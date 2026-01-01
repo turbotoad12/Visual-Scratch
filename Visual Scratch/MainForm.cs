@@ -69,7 +69,8 @@ namespace Visual_Scratch
 
             // How to add document:  kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewDocument(), NewDocument() });
             // just if you need to show someone doucment: kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewDocument("C:/Users/jones/Downloads/Project.sb3") });
-            kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewHomePage() });
+            var homepage = NewHomePage();
+            kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { homepage });
         }
         // Create a project
         private void kryptonRibbonGroupButton1_Click(object sender, EventArgs e)
