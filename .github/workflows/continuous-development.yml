@@ -1,0 +1,57 @@
+name: Continuous Development
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: >
+          nuget restore "Visual Scratch/Visual Scratch.csproj"
+          -PackagesDirectory packages
+
+      - name: Build Debug configuration
+        run: >
+          msbuild "Visual Scratch/Visual Scratch.csproj"
+          /p:Configuration=Debug
+          /p:Platform=AnyCPU
+          /p:OutputPath=bin/Debug
+          /verbosity:minimal
+
+      - name: Build Release configuration
+        run: >
+          msbuild "Visual Scratch/Visual Scratch.csproj"
+          /p:Configuration=Release
+          /p:Platform=AnyCPU
+          /p:OutputPath=bin/Release
+          /verbosity:minimal
+
+      - name: Upload Debug artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-scratch-debug
+          path: Visual Scratch/bin/Debug/
+          retention-days: 7
+
+      - name: Upload Release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-scratch-release
+          path: Visual Scratch/bin/Release/
+          retention-days: 30
