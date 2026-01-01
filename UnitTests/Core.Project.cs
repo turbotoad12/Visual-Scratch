@@ -1,52 +1,71 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Web.WebView2.Core;
 namespace UnitTests
 {
     [TestClass]
     public class JsonFileTests
     {
         [TestMethod]
-        public void Save()
+        public void Save_ValidProject_CreatesFileAtSpecifiedPath()
         {
             var tempPath = System.IO.Path.GetTempFileName();
-            var project = new Visual_Scratch.Core.Project
+            try
             {
-                Info = new Visual_Scratch.Core.Project.Metadata
+                var project = new Visual_Scratch.Core.Project
                 {
-                    Name = "Test Project",
-                    Author = "Unit Test",
-                    Description = "This is a test project."
+                    Info = new Visual_Scratch.Core.Project.Metadata
+                    {
+                        Name = "Test Project",
+                        Author = "Unit Test",
+                        Description = "This is a test project."
+                    }
+                };
+                Visual_Scratch.Core.JsonFile.Save(tempPath, project);
+                Assert.IsTrue(System.IO.File.Exists(tempPath));
+            }
+            finally
+            {
+                if (System.IO.File.Exists(tempPath))
+                {
+                    System.IO.File.Delete(tempPath);
                 }
-            };
-            Visual_Scratch.Core.JsonFile.Save(tempPath, project);
-            Assert.IsTrue(System.IO.File.Exists(tempPath));
+            }
         }
         [TestMethod]
         public void Load()
         {
             var tempPath = System.IO.Path.GetTempFileName();
-            var project = new Visual_Scratch.Core.Project
+            try
             {
-                Info = new Visual_Scratch.Core.Project.Metadata
+                var project = new Visual_Scratch.Core.Project
                 {
-                    Name = "Test Project",
-                    Author = "Unit Test",
-                    Description = "This is a test project."
+                    Info = new Visual_Scratch.Core.Project.Metadata
+                    {
+                        Name = "Test Project",
+                        Author = "Unit Test",
+                        Description = "This is a test project."
+                    }
+                };
+                Visual_Scratch.Core.JsonFile.Save(tempPath, project);
+                var loadedProject = Visual_Scratch.Core.JsonFile.Load<Visual_Scratch.Core.Project>(tempPath);
+                Assert.IsNotNull(loadedProject);
+                Assert.AreEqual("Test Project", loadedProject.Info.Name);
+                Assert.AreEqual("Unit Test", loadedProject.Info.Author);
+                Assert.AreEqual("This is a test project.", loadedProject.Info.Description);
+            }
+            finally
+            {
+                if (System.IO.File.Exists(tempPath))
+                {
+                    System.IO.File.Delete(tempPath);
                 }
-            };
-            Visual_Scratch.Core.JsonFile.Save(tempPath, project);
-            var loadedProject = Visual_Scratch.Core.JsonFile.Load<Visual_Scratch.Core.Project>(tempPath);
-            Assert.IsNotNull(loadedProject);
-            Assert.AreEqual("Test Project", loadedProject.Info.Name);
-            Assert.AreEqual("Unit Test", loadedProject.Info.Author);
-            Assert.AreEqual("This is a test project.", loadedProject.Info.Description);
+            }
         }
     }
     [TestClass]
     public class ProjectTests
     {
         [TestMethod]
-        public void LoadFromFile()
+        public void LoadFromFile_ValidProjectFile_ReturnsProjectWithCorrectMetadata()
         {
             var tempPath = System.IO.Path.GetTempFileName();
             var project = new Visual_Scratch.Core.Project
@@ -66,7 +85,7 @@ namespace UnitTests
             Assert.AreEqual("This is a test project.", loadedProject.Info.Description);
         }
         [TestMethod]
-        public void SaveToFile()
+        public void SaveToFile_ValidProject_SavesCorrectlyAndCanBeReloaded()
         {
             var tempPath = System.IO.Path.GetTempFileName();
             var project = new Visual_Scratch.Core.Project
@@ -88,7 +107,6 @@ namespace UnitTests
         [TestMethod]
         public override void ToString()
         {
-            var tempPath = System.IO.Path.GetTempFileName();
             var project = new Visual_Scratch.Core.Project
             {
                 Info = new Visual_Scratch.Core.Project.Metadata
@@ -103,7 +121,7 @@ namespace UnitTests
             Assert.AreEqual(serializedObject, jsonString);
         }
         [TestMethod]
-        public void CreateProject()
+        public void CreateProject_ValidParameters_CreatesProjectWithDirectoryAndFile()
         {
             var tempPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.IO.Path.GetRandomFileName());
             var project = Visual_Scratch.Core.Project.CreateProject(tempPath, "New Project", "Author Name", "Project Description");
