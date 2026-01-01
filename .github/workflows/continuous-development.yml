@@ -39,14 +39,15 @@ jobs:
           /p:Configuration=Debug
           /p:Platform=AnyCPU
           /verbosity:minimal
+
       - name: Setup VSTest
-      
-  uses: darenm/Setup-VSTest@v1.2
+        uses: darenm/Setup-VSTest@v1.2
+
       - name: Run Unit Tests
-    run: >
-    vstest.console.exe "UnitTests/bin/Debug/UnitTests.dll"
-    /Logger:trx
-    /ResultsDirectory:TestResults
+        run: >
+          vstest.console.exe "UnitTests/bin/Debug/UnitTests.dll"
+          /Logger:trx
+          /ResultsDirectory:TestResults
 
       - name: Upload Test Results
         if: always()
