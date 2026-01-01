@@ -86,7 +86,7 @@ namespace UnitTests
             Assert.AreEqual("This is a test project.", loadedProject.Info.Description);
         }
         [TestMethod]
-        public void ToString()
+        public override void ToString()
         {
             var tempPath = System.IO.Path.GetTempFileName();
             var project = new Visual_Scratch.Core.Project
