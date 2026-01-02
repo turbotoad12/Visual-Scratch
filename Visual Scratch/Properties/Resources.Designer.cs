@@ -63,6 +63,16 @@ namespace Visual_Scratch.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Controls_Play_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("Controls-Play-48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Document_Create_48x48 {
             get {
                 object obj = ResourceManager.GetObject("Document-Create-48x48", resourceCulture);
@@ -76,6 +86,26 @@ namespace Visual_Scratch.Properties {
         internal static System.Drawing.Bitmap Document_Open_48x48 {
             get {
                 object obj = ResourceManager.GetObject("Document-Open-48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Games_Edit_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("Games-Edit-48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Package_Wizard_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("Package-Wizard-48x48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

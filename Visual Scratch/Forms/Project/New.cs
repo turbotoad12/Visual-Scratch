@@ -65,7 +65,7 @@ namespace Visual_Scratch.Forms.Project
         //browse button
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            
+            throw new NotImplementedException("Browse button not implemented yet. DEV MAKE SURE TO MAKE TS WORK!!!!!!!!!!!!!!!!");
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)

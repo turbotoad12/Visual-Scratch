@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Visual_Scratch.Core;
 using Visual_Scratch.Documents;
 
 namespace Visual_Scratch
@@ -16,6 +17,8 @@ namespace Visual_Scratch
     public partial class MainForm : KryptonForm
     {
         private KryptonPage homepage = null;
+        private Project currentProject = null;
+        private bool isProjectLoaded = false;
         public MainForm()
         {
             InitializeComponent();
@@ -111,9 +114,11 @@ namespace Visual_Scratch
                 // Open the main project file (assumed to be .sb3 for now)
                 if (File.Exists(project.Sb3Path))
                 {
+                    currentProject = project;
                     var sb3Page = NewSb3Editor(project.Sb3Path);
                     State_Project();
                     kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { sb3Page });
+                    isProjectLoaded = true;
                 }
                 else
                 {
@@ -150,6 +155,35 @@ namespace Visual_Scratch
             {
                 LoadProject(Core.Project.LoadFromFile(openFileDialog.FileName));
             }
+        }
+        // Open Game Editor
+        private void kryptonRibbonGroupButtonGameEditor_Click(object sender, EventArgs e)
+        {
+            if (isProjectLoaded)
+            {
+                var sb3Page = NewSb3Editor(currentProject.Sb3Path);
+                State_Project();
+                kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { sb3Page });
+            }
+            else
+            {
+                KryptonMessageBox.Show("No project is loaded. Please load a project first.", "Error");
+            }
+        }
+
+        private void kryptonRibbon1_SelectedTabChanged(object sender, EventArgs e)
+        {
+
+        }
+        // Run project in Scratch Everywhere!
+        private void kryptonRibbonGroupButtonPublishRun_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        // Run Packaging Wizard
+        private void kryptonRibbonGroupButtonPublishPackage_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

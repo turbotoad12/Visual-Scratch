@@ -200,6 +200,9 @@
     <None Include="Resources\Visual Scratch Logo 32x32.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Controls-Play-48x48.png" />
+    <None Include="Resources\Games-Edit-48x48.png" />
+    <None Include="Resources\Package-Wizard-48x48.png" />
     <Content Include="Resources\Visual Scratch Icon 256x256.ico" />
   </ItemGroup>
   <ItemGroup>
