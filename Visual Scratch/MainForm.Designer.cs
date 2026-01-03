@@ -32,23 +32,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.kryptonRibbon1 = new Krypton.Ribbon.KryptonRibbon();
             this.kryptonRibbonTabProject = new Krypton.Ribbon.KryptonRibbonTab();
-            this.kryptonRibbonTabHome = new Krypton.Ribbon.KryptonRibbonTab();
-            this.kryptonRibbonTabPublish = new Krypton.Ribbon.KryptonRibbonTab();
-            this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
-            this.kryptonDockingManager1 = new Krypton.Docking.KryptonDockingManager();
-            this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
-            this.kryptonDockableWorkspace1 = new Krypton.Docking.KryptonDockableWorkspace();
-            this.kryptonRibbonGroupSE = new Krypton.Ribbon.KryptonRibbonGroup();
-            this.kryptonRibbonGroupTriple2 = new Krypton.Ribbon.KryptonRibbonGroupTriple();
             this.RibbonGroupProject = new Krypton.Ribbon.KryptonRibbonGroup();
             this.kryptonRibbonGroupTriple1 = new Krypton.Ribbon.KryptonRibbonGroupTriple();
             this.kryptonRibbonGroupButton1 = new Krypton.Ribbon.KryptonRibbonGroupButton();
             this.kryptonRibbonGroupButton2 = new Krypton.Ribbon.KryptonRibbonGroupButton();
+            this.kryptonRibbonTabHome = new Krypton.Ribbon.KryptonRibbonTab();
             this.kryptonRibbonGroup2 = new Krypton.Ribbon.KryptonRibbonGroup();
             this.kryptonRibbonGroupTriple3 = new Krypton.Ribbon.KryptonRibbonGroupTriple();
             this.kryptonRibbonGroupButtonGameEditor = new Krypton.Ribbon.KryptonRibbonGroupButton();
+            this.kryptonRibbonTabPublish = new Krypton.Ribbon.KryptonRibbonTab();
+            this.kryptonRibbonGroupSE = new Krypton.Ribbon.KryptonRibbonGroup();
+            this.kryptonRibbonGroupTriple2 = new Krypton.Ribbon.KryptonRibbonGroupTriple();
             this.kryptonRibbonGroupButtonPublishRun = new Krypton.Ribbon.KryptonRibbonGroupButton();
             this.kryptonRibbonGroupButtonPublishPackage = new Krypton.Ribbon.KryptonRibbonGroupButton();
+            this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
+            this.kryptonDockingManager1 = new Krypton.Docking.KryptonDockingManager();
+            this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
+            this.kryptonDockableWorkspace1 = new Krypton.Docking.KryptonDockableWorkspace();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonRibbon1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
@@ -64,7 +64,7 @@
             this.kryptonRibbonTabProject,
             this.kryptonRibbonTabHome,
             this.kryptonRibbonTabPublish});
-            this.kryptonRibbon1.SelectedTab = this.kryptonRibbonTabHome;
+            this.kryptonRibbon1.SelectedTab = this.kryptonRibbonTabPublish;
             this.kryptonRibbon1.Size = new System.Drawing.Size(800, 115);
             this.kryptonRibbon1.TabIndex = 0;
             this.kryptonRibbon1.SelectedTabChanged += new System.EventHandler(this.kryptonRibbon1_SelectedTabChanged);
@@ -75,12 +75,60 @@
             this.RibbonGroupProject});
             this.kryptonRibbonTabProject.Text = "Project";
             // 
+            // RibbonGroupProject
+            // 
+            this.RibbonGroupProject.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupContainer[] {
+            this.kryptonRibbonGroupTriple1});
+            this.RibbonGroupProject.TextLine1 = "Project";
+            // 
+            // kryptonRibbonGroupTriple1
+            // 
+            this.kryptonRibbonGroupTriple1.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupItem[] {
+            this.kryptonRibbonGroupButton1,
+            this.kryptonRibbonGroupButton2});
+            // 
+            // kryptonRibbonGroupButton1
+            // 
+            this.kryptonRibbonGroupButton1.ImageLarge = global::Visual_Scratch.Properties.Resources.Document_Create_48x48;
+            this.kryptonRibbonGroupButton1.ImageSmall = null;
+            this.kryptonRibbonGroupButton1.TextLine1 = "New";
+            this.kryptonRibbonGroupButton1.ToolTipValues.Description = "This will create a window that you can use to create a Visual Scratch project.";
+            this.kryptonRibbonGroupButton1.ToolTipValues.EnableToolTips = true;
+            this.kryptonRibbonGroupButton1.ToolTipValues.Heading = "Create A Project";
+            this.kryptonRibbonGroupButton1.Click += new System.EventHandler(this.kryptonRibbonGroupButton1_Click);
+            // 
+            // kryptonRibbonGroupButton2
+            // 
+            this.kryptonRibbonGroupButton2.ImageLarge = global::Visual_Scratch.Properties.Resources.Document_Open_48x48;
+            this.kryptonRibbonGroupButton2.TextLine1 = "Open";
+            this.kryptonRibbonGroupButton2.ToolTipValues.Description = "Opens a window where you can load a Visual Scratch Project.";
+            this.kryptonRibbonGroupButton2.ToolTipValues.EnableToolTips = true;
+            this.kryptonRibbonGroupButton2.ToolTipValues.Heading = "Open A Project";
+            this.kryptonRibbonGroupButton2.Click += new System.EventHandler(this.kryptonRibbonGroupButton2_Click);
+            // 
             // kryptonRibbonTabHome
             // 
             this.kryptonRibbonTabHome.Groups.AddRange(new Krypton.Ribbon.KryptonRibbonGroup[] {
             this.kryptonRibbonGroup2});
             this.kryptonRibbonTabHome.Text = "Home";
             this.kryptonRibbonTabHome.Visible = false;
+            // 
+            // kryptonRibbonGroup2
+            // 
+            this.kryptonRibbonGroup2.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupContainer[] {
+            this.kryptonRibbonGroupTriple3});
+            this.kryptonRibbonGroup2.TextLine1 = "Editor";
+            // 
+            // kryptonRibbonGroupTriple3
+            // 
+            this.kryptonRibbonGroupTriple3.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupItem[] {
+            this.kryptonRibbonGroupButtonGameEditor});
+            // 
+            // kryptonRibbonGroupButtonGameEditor
+            // 
+            this.kryptonRibbonGroupButtonGameEditor.ImageLarge = global::Visual_Scratch.Properties.Resources.Games_Edit_48x48;
+            this.kryptonRibbonGroupButtonGameEditor.TextLine1 = "Game";
+            this.kryptonRibbonGroupButtonGameEditor.Click += new System.EventHandler(this.kryptonRibbonGroupButtonGameEditor_Click);
             // 
             // kryptonRibbonTabPublish
             // 
@@ -89,6 +137,32 @@
             this.kryptonRibbonTabPublish.KeyTip = "P";
             this.kryptonRibbonTabPublish.Text = "Publish";
             this.kryptonRibbonTabPublish.Visible = false;
+            // 
+            // kryptonRibbonGroupSE
+            // 
+            this.kryptonRibbonGroupSE.Image = null;
+            this.kryptonRibbonGroupSE.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupContainer[] {
+            this.kryptonRibbonGroupTriple2});
+            this.kryptonRibbonGroupSE.TextLine1 = "SE!";
+            // 
+            // kryptonRibbonGroupTriple2
+            // 
+            this.kryptonRibbonGroupTriple2.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupItem[] {
+            this.kryptonRibbonGroupButtonPublishRun,
+            this.kryptonRibbonGroupButtonPublishPackage});
+            this.kryptonRibbonGroupTriple2.MinimumSize = Krypton.Ribbon.GroupItemSize.Medium;
+            // 
+            // kryptonRibbonGroupButtonPublishRun
+            // 
+            this.kryptonRibbonGroupButtonPublishRun.ImageLarge = global::Visual_Scratch.Properties.Resources.Controls_Play_48x48;
+            this.kryptonRibbonGroupButtonPublishRun.TextLine1 = "Run";
+            this.kryptonRibbonGroupButtonPublishRun.Click += new System.EventHandler(this.kryptonRibbonGroupButtonPublishRun_Click);
+            // 
+            // kryptonRibbonGroupButtonPublishPackage
+            // 
+            this.kryptonRibbonGroupButtonPublishPackage.ImageLarge = global::Visual_Scratch.Properties.Resources.Package_Wizard_48x48;
+            this.kryptonRibbonGroupButtonPublishPackage.TextLine1 = "Package";
+            this.kryptonRibbonGroupButtonPublishPackage.Click += new System.EventHandler(this.kryptonRibbonGroupButtonPublishPackage_Click);
             // 
             // kryptonManager1
             // 
@@ -124,80 +198,6 @@
             this.kryptonDockableWorkspace1.SplitterWidth = 5;
             this.kryptonDockableWorkspace1.TabIndex = 0;
             this.kryptonDockableWorkspace1.TabStop = true;
-            // 
-            // kryptonRibbonGroupSE
-            // 
-            this.kryptonRibbonGroupSE.Image = null;
-            this.kryptonRibbonGroupSE.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupContainer[] {
-            this.kryptonRibbonGroupTriple2});
-            this.kryptonRibbonGroupSE.TextLine1 = "SE!";
-            // 
-            // kryptonRibbonGroupTriple2
-            // 
-            this.kryptonRibbonGroupTriple2.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupItem[] {
-            this.kryptonRibbonGroupButtonPublishRun,
-            this.kryptonRibbonGroupButtonPublishPackage});
-            this.kryptonRibbonGroupTriple2.MinimumSize = Krypton.Ribbon.GroupItemSize.Medium;
-            // 
-            // RibbonGroupProject
-            // 
-            this.RibbonGroupProject.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupContainer[] {
-            this.kryptonRibbonGroupTriple1});
-            this.RibbonGroupProject.TextLine1 = "Project";
-            // 
-            // kryptonRibbonGroupTriple1
-            // 
-            this.kryptonRibbonGroupTriple1.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupItem[] {
-            this.kryptonRibbonGroupButton1,
-            this.kryptonRibbonGroupButton2});
-            // 
-            // kryptonRibbonGroupButton1
-            // 
-            this.kryptonRibbonGroupButton1.ImageLarge = global::Visual_Scratch.Properties.Resources.Document_Create_48x48;
-            this.kryptonRibbonGroupButton1.ImageSmall = null;
-            this.kryptonRibbonGroupButton1.TextLine1 = "New";
-            this.kryptonRibbonGroupButton1.ToolTipValues.Description = "This will create a window that you can use to create a Visual Scratch project.";
-            this.kryptonRibbonGroupButton1.ToolTipValues.EnableToolTips = true;
-            this.kryptonRibbonGroupButton1.ToolTipValues.Heading = "Create A Project";
-            this.kryptonRibbonGroupButton1.Click += new System.EventHandler(this.kryptonRibbonGroupButton1_Click);
-            // 
-            // kryptonRibbonGroupButton2
-            // 
-            this.kryptonRibbonGroupButton2.ImageLarge = global::Visual_Scratch.Properties.Resources.Document_Open_48x48;
-            this.kryptonRibbonGroupButton2.TextLine1 = "Open";
-            this.kryptonRibbonGroupButton2.ToolTipValues.Description = "Opens a window where you can load a Visual Scratch Project.";
-            this.kryptonRibbonGroupButton2.ToolTipValues.EnableToolTips = true;
-            this.kryptonRibbonGroupButton2.ToolTipValues.Heading = "Open A Project";
-            this.kryptonRibbonGroupButton2.Click += new System.EventHandler(this.kryptonRibbonGroupButton2_Click);
-            // 
-            // kryptonRibbonGroup2
-            // 
-            this.kryptonRibbonGroup2.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupContainer[] {
-            this.kryptonRibbonGroupTriple3});
-            this.kryptonRibbonGroup2.TextLine1 = "Editor";
-            // 
-            // kryptonRibbonGroupTriple3
-            // 
-            this.kryptonRibbonGroupTriple3.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupItem[] {
-            this.kryptonRibbonGroupButtonGameEditor});
-            // 
-            // kryptonRibbonGroupButtonGameEditor
-            // 
-            this.kryptonRibbonGroupButtonGameEditor.ImageLarge = global::Visual_Scratch.Properties.Resources.Games_Edit_48x48;
-            this.kryptonRibbonGroupButtonGameEditor.TextLine1 = "Game";
-            this.kryptonRibbonGroupButtonGameEditor.Click += new System.EventHandler(this.kryptonRibbonGroupButtonGameEditor_Click);
-            // 
-            // kryptonRibbonGroupButtonPublishRun
-            // 
-            this.kryptonRibbonGroupButtonPublishRun.ImageLarge = global::Visual_Scratch.Properties.Resources.Controls_Play_48x48;
-            this.kryptonRibbonGroupButtonPublishRun.TextLine1 = "Run";
-            this.kryptonRibbonGroupButtonPublishRun.Click += new System.EventHandler(this.kryptonRibbonGroupButtonPublishRun_Click);
-            // 
-            // kryptonRibbonGroupButtonPublishPackage
-            // 
-            this.kryptonRibbonGroupButtonPublishPackage.ImageLarge = global::Visual_Scratch.Properties.Resources.Package_Wizard_48x48;
-            this.kryptonRibbonGroupButtonPublishPackage.TextLine1 = "Package";
-            this.kryptonRibbonGroupButtonPublishPackage.Click += new System.EventHandler(this.kryptonRibbonGroupButtonPublishPackage_Click);
             // 
             // MainForm
             // 

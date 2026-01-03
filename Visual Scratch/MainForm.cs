@@ -178,7 +178,7 @@ namespace Visual_Scratch
         // Run project in Scratch Everywhere!
         private void kryptonRibbonGroupButtonPublishRun_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SE.LaunchSb3(currentProject.Sb3Path);
         }
         // Run Packaging Wizard
         private void kryptonRibbonGroupButtonPublishPackage_Click(object sender, EventArgs e)

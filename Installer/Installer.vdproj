@@ -123,6 +123,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7E182391ADF040068AC1226D4B35ADAC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8CD0FEE52FC6ABA277DC3FB029B77EEB"
         "OwnerKey" = "8:_FE58C0B9209E4E0E96DA07F1980693BA"
         "MsmSig" = "8:_UNDEFINED"
@@ -460,10 +466,15 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    "Name" = "8:Microsoft .NET Framework 4.8 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.EdgeRuntime"
+                    {
+                    "Name" = "8:Edge WebView runtime"
+                    "ProductCode" = "8:Microsoft.EdgeRuntime"
                     }
                 }
             }
@@ -477,7 +488,7 @@
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
-        "Compression" = "3:2"
+        "Compression" = "3:1"
         "SignOutput" = "11:FALSE"
         "CertificateFile" = "8:"
         "PrivateKeyFile" = "8:"
@@ -496,6 +507,11 @@
                     {
                     "Name" = "8:Microsoft .NET Framework 4.8 (x86 and x64)"
                     "ProductCode" = "8:.NETFramework,Version=v4.8"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.EdgeRuntime"
+                    {
+                    "Name" = "8:Edge WebView runtime"
+                    "ProductCode" = "8:Microsoft.EdgeRuntime"
                     }
                 }
             }
@@ -763,6 +779,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7E182391ADF040068AC1226D4B35ADAC"
+            {
+            "SourcePath" = "8:scratch-windows.exe"
+            "TargetName" = "8:scratch-windows.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_ECAF316398814C8FBAF4F6A168AD0C4F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8CD0FEE52FC6ABA277DC3FB029B77EEB"
@@ -1248,7 +1284,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Visual Scratch"
         "ProductCode" = "8:{24337304-619A-4C6F-94B1-A106546EAFCD}"
-        "PackageCode" = "8:{ED7852F3-1047-49E9-B573-653D8A24FE89}"
+        "PackageCode" = "8:{BE3A27BA-447B-4EDC-B5FF-A61C23440A46}"
         "UpgradeCode" = "8:{21DC16C5-D34D-49DB-9D3B-084237C2F032}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
