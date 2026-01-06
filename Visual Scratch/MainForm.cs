@@ -147,7 +147,7 @@ namespace Visual_Scratch
         private void kryptonRibbonGroupButton2_Click(object sender, EventArgs e)
         {
             // open file dialog to select .vsproj file
-            KryptonOpenFileDialog openFileDialog = new KryptonOpenFileDialog();
+            KryptonOpenFileDialog openFileDialog = new();
             openFileDialog.Filter = "Visual Scratch Project (*.vsproj)|*.vsproj";
             openFileDialog.Title = "Open Visual Scratch Project";
             openFileDialog.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Scratch", "Projects");
@@ -183,7 +183,9 @@ namespace Visual_Scratch
         // Run Packaging Wizard
         private void kryptonRibbonGroupButtonPublishPackage_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Forms.Publish.Wizard publishform = new();
+            publishform.PublishProject = currentProject;
+            publishform.ShowDialog();
         }
     }
 }

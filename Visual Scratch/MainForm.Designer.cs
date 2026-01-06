@@ -40,6 +40,9 @@
             this.kryptonRibbonGroup2 = new Krypton.Ribbon.KryptonRibbonGroup();
             this.kryptonRibbonGroupTriple3 = new Krypton.Ribbon.KryptonRibbonGroupTriple();
             this.kryptonRibbonGroupButtonGameEditor = new Krypton.Ribbon.KryptonRibbonGroupButton();
+            this.kryptonRibbonGroup6 = new Krypton.Ribbon.KryptonRibbonGroup();
+            this.kryptonRibbonGroupTriple4 = new Krypton.Ribbon.KryptonRibbonGroupTriple();
+            this.kryptonRibbonGroupButton3 = new Krypton.Ribbon.KryptonRibbonGroupButton();
             this.kryptonRibbonTabPublish = new Krypton.Ribbon.KryptonRibbonTab();
             this.kryptonRibbonGroupSE = new Krypton.Ribbon.KryptonRibbonGroup();
             this.kryptonRibbonGroupTriple2 = new Krypton.Ribbon.KryptonRibbonGroupTriple();
@@ -109,7 +112,8 @@
             // kryptonRibbonTabHome
             // 
             this.kryptonRibbonTabHome.Groups.AddRange(new Krypton.Ribbon.KryptonRibbonGroup[] {
-            this.kryptonRibbonGroup2});
+            this.kryptonRibbonGroup2,
+            this.kryptonRibbonGroup6});
             this.kryptonRibbonTabHome.Text = "Home";
             this.kryptonRibbonTabHome.Visible = false;
             // 
@@ -129,6 +133,28 @@
             this.kryptonRibbonGroupButtonGameEditor.ImageLarge = global::Visual_Scratch.Properties.Resources.Games_Edit_48x48;
             this.kryptonRibbonGroupButtonGameEditor.TextLine1 = "Game";
             this.kryptonRibbonGroupButtonGameEditor.Click += new System.EventHandler(this.kryptonRibbonGroupButtonGameEditor_Click);
+            // 
+            // kryptonRibbonGroup6
+            // 
+            this.kryptonRibbonGroup6.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupContainer[] {
+            this.kryptonRibbonGroupTriple4});
+            this.kryptonRibbonGroup6.TextLine1 = "SE!";
+            // 
+            // kryptonRibbonGroupTriple4
+            // 
+            this.kryptonRibbonGroupTriple4.Items.AddRange(new Krypton.Ribbon.KryptonRibbonGroupItem[] {
+            this.kryptonRibbonGroupButton3});
+            // 
+            // kryptonRibbonGroupButton3
+            // 
+            this.kryptonRibbonGroupButton3.ImageLarge = global::Visual_Scratch.Properties.Resources.Controls_Play_48x48;
+            this.kryptonRibbonGroupButton3.KeyTip = "R";
+            this.kryptonRibbonGroupButton3.TextLine1 = "Run";
+            this.kryptonRibbonGroupButton3.ToolTipValues.Description = "Runs the current project in Scratch Everywhere! This is useful for checking compa" +
+    "tability.";
+            this.kryptonRibbonGroupButton3.ToolTipValues.EnableToolTips = true;
+            this.kryptonRibbonGroupButton3.ToolTipValues.Heading = "Run in SE!";
+            this.kryptonRibbonGroupButton3.Click += new System.EventHandler(this.kryptonRibbonGroupButtonPublishRun_Click);
             // 
             // kryptonRibbonTabPublish
             // 
@@ -245,5 +271,8 @@
         private Krypton.Ribbon.KryptonRibbonGroupTriple kryptonRibbonGroupTriple3;
         private Krypton.Ribbon.KryptonRibbonGroupButton kryptonRibbonGroupButtonGameEditor;
         private Krypton.Ribbon.KryptonRibbonGroupButton kryptonRibbonGroupButtonPublishPackage;
+        private Krypton.Ribbon.KryptonRibbonGroup kryptonRibbonGroup6;
+        private Krypton.Ribbon.KryptonRibbonGroupTriple kryptonRibbonGroupTriple4;
+        private Krypton.Ribbon.KryptonRibbonGroupButton kryptonRibbonGroupButton3;
     }
 }

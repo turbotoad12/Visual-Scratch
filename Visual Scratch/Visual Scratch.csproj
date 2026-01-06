@@ -28,6 +28,9 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
@@ -99,6 +102,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Build.cs" />
     <Compile Include="Core\Project.cs" />
     <Compile Include="Core\SE.cs" />
     <Compile Include="Documents\Home.cs">
@@ -112,6 +116,12 @@
     </Compile>
     <Compile Include="Forms\Project\New.Designer.cs">
       <DependentUpon>New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Publish\Wizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Publish\Wizard.Designer.cs">
+      <DependentUpon>Wizard.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -132,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Project\New.resx">
       <DependentUpon>New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Publish\Wizard.resx">
+      <DependentUpon>Wizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

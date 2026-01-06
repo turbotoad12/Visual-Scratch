@@ -6,7 +6,7 @@ namespace Visual_Scratch.Core
 {
     public static class JsonFile
     {
-        private static readonly JsonSerializerOptions Options = new JsonSerializerOptions
+        private static readonly JsonSerializerOptions Options = new()
         {
             WriteIndented = true,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
@@ -40,7 +40,7 @@ namespace Visual_Scratch.Core
         public static T Load<T>(string path)
         {
             if (!File.Exists(path))
-                return default(T);
+                return default;
 
             try
             {
@@ -126,7 +126,7 @@ namespace Visual_Scratch.Core
         public static Project CreateProject(string path, string name, string author, string description)
         {
 
-            Project project = new Project()
+            Project project = new()
             {
                 Sb3Path = Path.Combine(path, "game.sb3"),
                 Info = new Metadata
