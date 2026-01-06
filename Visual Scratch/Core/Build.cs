@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using static Visual_Scratch.Core.Build;
 
-namespace Visual_Scratch.Core.Build
+namespace Visual_Scratch.Core
 {
     public class Build
     {
-        Project projectBuild = null;
+        Project projectBuild;
         public static readonly List<string> SupportedPlatforms = new()
         {
             "Nintendo DS",
@@ -56,40 +57,61 @@ namespace Visual_Scratch.Core.Build
             PSP,
             PS4
         }
-
-        private string GetBuildCommand(BuildTarget buildTarget, string outputPath, string inputPath)
+        public class BuildOptions
         {
-            string dockerfilePath = buildTarget switch
-            {
-                BuildTarget.NDS => "docker/Dockerfile.nds",
-                BuildTarget._3DS => "docker/Dockerfile.3ds",
-                BuildTarget.WiiU => "docker/Dockerfile.wiiu",
-                BuildTarget.Wii => "docker/Dockerfile.wii",
-                BuildTarget.GameCube => "docker/Dockerfile.gamecube",
-                BuildTarget.Switch => "docker/Dockerfile.switch",
-                BuildTarget.Vita => "docker/Dockerfile.vita",
-                BuildTarget.PSP => "docker/Dockerfile.psp",
-                BuildTarget.PS4 => "docker/Dockerfile.ps4",
-                _ => throw new ArgumentOutOfRangeException(nameof(buildTarget), "Unsupported build target.")
-            };
+            public BuildTarget Target { get; set; }
+            public string OutputPath { get; set; }
+            public string InputPath { get; set; }
 
-            return $"build -f {dockerfilePath} --target exporter -o \"{outputPath}\" \"{inputPath}\"";
+            public BuildOptions(BuildTarget target, string outputPath, string inputPath)
+            {
+                Target = target;
+                OutputPath = outputPath;
+                InputPath = inputPath;
+            }
+            /// <summary>
+            /// Returns a string containing the Docker build command for the specified build target, input path, and
+            /// output path.
+            /// </summary>
+            /// <remarks>The returned command can be used to invoke Docker for building an exporter
+            /// image. Ensure that the Target property is set to a valid build target before calling this
+            /// method. This only returns the Arguments, not the entire command.</remarks>
+            /// <returns>A formatted string representing the Docker build command. The string includes the appropriate Dockerfile
+            /// path based on the build target, as well as the input and output paths.</returns>
+            /// <exception cref="ArgumentOutOfRangeException">Thrown if the build target specified by the Target property is not supported.</exception>
+            public override string ToString()
+            {
+                string dockerfilePath = Target switch
+                {
+                    BuildTarget.NDS => "docker/Dockerfile.nds",
+                    BuildTarget._3DS => "docker/Dockerfile.3ds",
+                    BuildTarget.WiiU => "docker/Dockerfile.wiiu",
+                    BuildTarget.Wii => "docker/Dockerfile.wii",
+                    BuildTarget.GameCube => "docker/Dockerfile.gamecube",
+                    BuildTarget.Switch => "docker/Dockerfile.switch",
+                    BuildTarget.Vita => "docker/Dockerfile.vita",
+                    BuildTarget.PSP => "docker/Dockerfile.psp",
+                    BuildTarget.PS4 => "docker/Dockerfile.ps4",
+                    _ => throw new ArgumentOutOfRangeException(nameof(Target), "Unsupported build target.")
+                };
+                return String.Format("build -f {0} --target exporter -o \"{1}\" \"{2}\"", dockerfilePath, OutputPath, InputPath);
+            }
         }
 
-        public void BuildProject(string outputPath, BuildTarget target)
+        public void BuildProject(BuildOptions options)
         {
             if (!DockerRunning())
             {
                 throw new Exception("Docker is not running.");
             }
-            switch (target)
+            switch (options.Target)
             {
                 case BuildTarget.NDS:
                     throw new NotImplementedException("NDS build functionality is not yet implemented.");
 
                 case BuildTarget._3DS:
-                    // Get Build Command
-                    var BuildCommand = 
+                    // Get Build Arguments
+                    string BuildArguments = options.ToString();
                     throw new NotImplementedException("3DS build functionality is not yet implemented.");
 
                 case BuildTarget.WiiU:
