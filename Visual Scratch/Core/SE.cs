@@ -16,6 +16,8 @@ namespace Visual_Scratch.Core
         /// <returns>A string containing the absolute path to 'scratch-windows.exe' located in the Program Files (x86) directory.</returns>
         static public string GetSEPath() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Visual Scratch", "scratch-windows.exe");
 
+        static public Uri ScratchEverywhereUri => new Uri("https://github.com/ScratchEverywhere/ScratchEverywhere");
+
         static public void LaunchSb3(string sb3FilePath)
         {
             var sePath = GetSEPath();

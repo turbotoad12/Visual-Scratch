@@ -128,7 +128,7 @@ namespace Visual_Scratch.Core
 
             Project project = new()
             {
-                Sb3Path = Path.Combine(path, "game.sb3"),
+                Sb3Path = "game.sb3",
                 Info = new Metadata
                 {
                     Name = name,
@@ -140,8 +140,8 @@ namespace Visual_Scratch.Core
             Directory.CreateDirectory(path);
 
             File.WriteAllBytes(Path.Combine(project.Sb3Path), Properties.Resources.template_empty_sb3);
-            
-            project.SaveToFile(Path.Combine(path, "project.vsproj"));
+
+            project.SaveToFile(Path.Combine(path, String.Format("{0}.vsproj", name)));
             return project;
         }
     }

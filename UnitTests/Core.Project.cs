@@ -152,7 +152,7 @@ namespace UnitTests
                 Assert.AreEqual("Author Name", project.Info.Author);
                 Assert.AreEqual("Project Description", project.Info.Description);
                 Assert.IsTrue(System.IO.Directory.Exists(tempPath));
-                Assert.IsTrue(System.IO.File.Exists(System.IO.Path.Combine(tempPath, "game.sb3")));
+                Assert.IsTrue(System.IO.File.Exists("game.sb3"));
             }
             finally
             {
