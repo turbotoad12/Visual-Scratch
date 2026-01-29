@@ -88,7 +88,19 @@ namespace Visual_Scratch.Core
         /// <returns>A <see cref="Project"/> instance deserialized from the specified file.</returns>
         public static Project LoadFromFile(string path)
         {
-            return JsonFile.Load<Project>(path);
+            var project = JsonFile.Load<Project>(path);
+            if (project == null)
+                return null;
+
+            var baseDir = Path.GetDirectoryName(path);
+            if (!string.IsNullOrWhiteSpace(project.Sb3Path)
+                && !Path.IsPathRooted(project.Sb3Path)
+                && !string.IsNullOrEmpty(baseDir))
+            {
+                project.Sb3Path = Path.Combine(baseDir, project.Sb3Path);
+            }
+
+            return project;
         }
         /// <summary>
         /// Saves the current object to a file in JSON format at the specified path.
@@ -123,7 +135,7 @@ namespace Visual_Scratch.Core
         /// <returns>A <see cref="Project"/> instance representing the newly created project, with its metadata initialized and
         /// project file copied from the template.</returns>
         /// <exception cref="FileNotFoundException">Thrown if the project template file cannot be found in the expected location.</exception>
-        public static Project CreateProject(string path, string name, string author, string description)
+        public static Project CreateProject(DirectoryInfo path, string name, string author, string description)
         {
 
             Project project = new()
@@ -137,11 +149,11 @@ namespace Visual_Scratch.Core
                 }
             };
             // Create Project stuffs here
-            Directory.CreateDirectory(path);
+            Directory.CreateDirectory(path.FullName);
 
-            File.WriteAllBytes(Path.Combine(project.Sb3Path), Properties.Resources.template_empty_sb3);
+            File.WriteAllBytes(project.Sb3Path, Properties.Resources.template_empty_sb3);
 
-            project.SaveToFile(Path.Combine(path, String.Format("{0}.vsproj", name)));
+            project.SaveToFile(Path.Combine(path.FullName, String.Format("{0}.vsproj", name)));
             return project;
         }
     }

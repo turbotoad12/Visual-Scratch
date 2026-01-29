@@ -103,6 +103,16 @@ namespace Visual_Scratch.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Options_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("Options-48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Package_Wizard_48x48 {
             get {
                 object obj = ResourceManager.GetObject("Package-Wizard-48x48", resourceCulture);

@@ -70,7 +70,7 @@ namespace Visual_Scratch.Forms.Project
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            project = Core.Project.CreateProject(kryptonTextBox4.Text, kryptonTextBox1.Text, kryptonTextBox3.Text, kryptonTextBox2.Text);
+            project = Core.Project.CreateProject(new DirectoryInfo(kryptonTextBox4.Text), kryptonTextBox1.Text, kryptonTextBox3.Text, kryptonTextBox2.Text);
 
             this.Close();
         }

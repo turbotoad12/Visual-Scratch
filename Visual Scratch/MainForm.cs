@@ -19,6 +19,7 @@ namespace Visual_Scratch
         private KryptonPage homepage = null;
         private Project currentProject = null;
         private bool isProjectLoaded = false;
+        public bool isSaved = true;
         public MainForm()
         {
             InitializeComponent();
@@ -27,6 +28,16 @@ namespace Visual_Scratch
         {
             string name = Path.GetFileNameWithoutExtension(path);
             KryptonPage page = NewPage(name, 0, new Sb3Editor(path));
+
+            // Document pages cannot be docked or auto hidden
+            page.ClearFlags(KryptonPageFlags.DockingAllowAutoHidden | KryptonPageFlags.DockingAllowDocked);
+
+            return page;
+        }
+        private KryptonPage NewPropertiesEditor(string path)
+        {
+            Action<bool> setSaved = (bool saved) => { isSaved = saved; };
+            KryptonPage page = NewPage("Properties", 0, new Documents.Properties(currentProject, setSaved));
 
             // Document pages cannot be docked or auto hidden
             page.ClearFlags(KryptonPageFlags.DockingAllowAutoHidden | KryptonPageFlags.DockingAllowDocked);
@@ -107,7 +118,7 @@ namespace Visual_Scratch
             homepage = NewHomePage();
             kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { homepage });
         }
-        private void LoadProject(Core.Project project)
+        private void LoadProject(Core.Project project, DirectoryInfo workingDir)
         {
             if (project != null)
             {
@@ -139,7 +150,7 @@ namespace Visual_Scratch
             var result = newform.ShowDialog();
             if (result == DialogResult.OK)
             {
-                LoadProject(newform.project);
+                LoadProject(newform.project, new DirectoryInfo(Environment.CurrentDirectory));
             }
 
         }
@@ -153,7 +164,7 @@ namespace Visual_Scratch
             openFileDialog.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Scratch", "Projects");
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                LoadProject(Core.Project.LoadFromFile(openFileDialog.FileName));
+                LoadProject(Core.Project.LoadFromFile(openFileDialog.FileName), new DirectoryInfo(Environment.CurrentDirectory));
             }
         }
         // Open Game Editor
@@ -186,6 +197,20 @@ namespace Visual_Scratch
             Forms.Publish.Wizard publishform = new();
             publishform.PublishProject = currentProject;
             publishform.ShowDialog();
+        }
+        // Properties button
+        private void kryptonRibbonGroupButton4_Click(object sender, EventArgs e)
+        {
+            if (isProjectLoaded)
+            {
+                var propertiesPage = NewPropertiesEditor(currentProject.Sb3Path);
+                State_Project();
+                kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { propertiesPage });
+            }
+            else
+            {
+                KryptonMessageBox.Show("No project is loaded. Please load a project first.", "Error");
+            }
         }
     }
 }

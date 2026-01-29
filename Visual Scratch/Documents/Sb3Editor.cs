@@ -24,6 +24,51 @@ namespace Visual_Scratch
             Sb3FilePath = sb3FilePath;
         }
 
+        private static async Task WaitForVmAsync(WebView2 webView, int timeoutMs = 10000, int pollMs = 200)
+        {
+            if (webView?.CoreWebView2 == null)
+            {
+                throw new InvalidOperationException("WebView2 is not initialized");
+            }
+
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            while (sw.ElapsedMilliseconds < timeoutMs)
+            {
+                var ready = await webView.CoreWebView2.ExecuteScriptAsync("!!window.vm");
+                if (string.Equals(ready, "true", StringComparison.OrdinalIgnoreCase))
+                {
+                    return;
+                }
+                await Task.Delay(pollMs);
+            }
+
+            throw new TimeoutException("Scratch/TurboWarp VM not ready");
+        }
+
+        private static async Task WaitForDefaultProjectAsync(WebView2 webView, int timeoutMs = 10000, int pollMs = 200)
+        {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            while (sw.ElapsedMilliseconds < timeoutMs)
+            {
+                // Wait until the built-in default project finishes loading (stage present)
+                var ready = await webView.CoreWebView2.ExecuteScriptAsync(
+                    "(() => {\n" +
+                    "  if (!window.vm || !window.vm.runtime) return 'no';\n" +
+                    "  const targets = window.vm.runtime.targets || [];\n" +
+                    "  return targets.length > 0 ? 'yes' : 'no';\n" +
+                    "})();");
+
+                if (string.Equals(ready, "\"yes\"", StringComparison.OrdinalIgnoreCase))
+                {
+                    return;
+                }
+
+                await Task.Delay(pollMs);
+            }
+
+            throw new TimeoutException("Scratch default project did not finish loading");
+        }
+
         public static async Task LoadSb3IntoTurboWarpAsync(WebView2 webView, string sb3Path)
         {
             if (webView?.CoreWebView2 == null)
@@ -38,6 +83,9 @@ namespace Visual_Scratch
 
             try
             {
+                await WaitForVmAsync(webView);
+                await WaitForDefaultProjectAsync(webView);
+
                 byte[] sb3Bytes = File.ReadAllBytes(sb3Path);
                 string base64 = Convert.ToBase64String(sb3Bytes);
                 string js = $@"

@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Visual_Scratch.Core
 {
-    internal class Docker
+    public class Docker
     {
         // Example build command:
         // docker build -f docker/Dockerfile.3ds --target exporter -o . .
@@ -55,7 +56,7 @@ namespace Visual_Scratch.Core
             /// <summary>
             /// Gets or sets the file system path associated with this instance.
             /// </summary>
-            public string path { get; set; }
+            public string Path { get; set; }
         }
         /// <summary>
         /// Represents a single command-line argument for a Docker command, consisting of a name and a value.
@@ -113,7 +114,17 @@ namespace Visual_Scratch.Core
             /// <remarks>The collection is initialized with a default argument targeting the exporter.
             /// Additional arguments can be added or removed as needed to customize the Docker command
             /// invocation.</remarks>
-            public List<DockerArgument> Arguments { get; set; } = new() { new("target", "exporter") }; // Adds one default argument, --target exporter.
+            public List<DockerArgument> Arguments { get; set; } = new() { new("target", "exporter"), new("progress", "plain") }; // Adds one default argument, --target exporter.
+
+            /// <summary>
+            /// Optional progress reporter for standard output lines from Docker.
+            /// </summary>
+            public IProgress<string> OutputProgress { get; set; }
+
+            /// <summary>
+            /// Optional progress reporter for error output lines from Docker.
+            /// </summary>
+            public IProgress<string> ErrorProgress { get; set; }
         }
         /// <summary>
         /// Builds a Docker image using the specified build options and reports progress and errors asynchronously.
@@ -132,7 +143,7 @@ namespace Visual_Scratch.Core
         /// <returns>A task that represents the asynchronous Docker build operation. The task completes when the build process
         /// finishes or is canceled.</returns>
         /// <exception cref="InvalidOperationException">Thrown if the Docker build process exits with a non-zero exit code.</exception>
-        public async Task RunDocker(
+        static public async Task RunDocker(
             DockerBuildOptions dockerBuildOptions,
             IProgress<string> output = null,
             IProgress<string> error = null,
@@ -140,11 +151,14 @@ namespace Visual_Scratch.Core
         {
             token.ThrowIfCancellationRequested();
 
+            output ??= dockerBuildOptions?.OutputProgress;
+            error ??= dockerBuildOptions?.ErrorProgress;
+
             var args = new StringBuilder();
             args.Append("build ");
-            if (dockerBuildOptions.Dockerfile != null && !string.IsNullOrEmpty(dockerBuildOptions.Dockerfile.path))
+            if (dockerBuildOptions.Dockerfile != null && !string.IsNullOrEmpty(dockerBuildOptions.Dockerfile.Path))
             {
-                args.Append($"-f \"{dockerBuildOptions.Dockerfile.path}\" ");
+                args.Append($"-f \"{dockerBuildOptions.Dockerfile.Path}\" ");
             }
             if (dockerBuildOptions.Arguments != null && dockerBuildOptions.Arguments.Any())
             {
@@ -157,7 +171,7 @@ namespace Visual_Scratch.Core
             {
                 args.Append($"-o \"{dockerBuildOptions.OutputPath}\" ");
             }
-            args.Append($". {dockerBuildOptions.OutputPath}"); // This is for Input and Output Paths.
+            args.Append($"."); // This is for Input and Output Paths.
 
             var inputPath = dockerBuildOptions.InputPath;
 
@@ -171,7 +185,7 @@ namespace Visual_Scratch.Core
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
-
+            StringBuilder sterr = new();
             using (var process = new Process { StartInfo = psi, EnableRaisingEvents = true })
             {
                 var tcs = new TaskCompletionSource<int>();
@@ -189,6 +203,7 @@ namespace Visual_Scratch.Core
                     if (e.Data == null) return;
                     error?.Report(e.Data);
                     // Log or surface errors.
+                    sterr.AppendLine(e.Data);
                 };
 
                 process.Exited += (_, __) => tcs.TrySetResult(process.ExitCode);
@@ -205,7 +220,7 @@ namespace Visual_Scratch.Core
                 {
                     var exitCode = await tcs.Task.ConfigureAwait(false);
                     token.ThrowIfCancellationRequested();
-                    if (exitCode != 0) throw new InvalidOperationException($"Docker build failed with code {exitCode}.");
+                    if (exitCode != 0) throw new InvalidOperationException($"Docker build failed with code {exitCode}.\n{sterr}");
                 }
             }
         }

@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Visual_Scratch.Platforms
 {
-    public interface IPlatform
+    public interface IPlatform 
     {
-        string Name { get; set; }
-        string Description { get; set; }
-        string Author { get; set; }
+        Core.Project Project { get; set; }
 
-        void Build();
+        // Make sure DockerBuildOptions is public to match the interface's accessibility
+        Core.Docker.DockerBuildOptions BuildOptions { get; set; }
 
-        
+        Task BuildAsync(IProgress<int> progress, CancellationToken cancellationToken);
 
     }
 }
