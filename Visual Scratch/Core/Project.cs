@@ -151,7 +151,7 @@ namespace Visual_Scratch.Core
             // Create Project stuffs here
             Directory.CreateDirectory(path.FullName);
 
-            File.WriteAllBytes(project.Sb3Path, Properties.Resources.template_empty_sb3);
+            File.WriteAllBytes(Path.Combine(path.FullName, project.Sb3Path), Properties.Resources.template_empty_sb3);
 
             project.SaveToFile(Path.Combine(path.FullName, String.Format("{0}.vsproj", name)));
             return project;
