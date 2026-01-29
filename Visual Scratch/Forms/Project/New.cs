@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Krypton.Toolkit;
+﻿using Krypton.Toolkit;
+using System;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Visual_Scratch.Forms.Project
 {
@@ -65,7 +58,25 @@ namespace Visual_Scratch.Forms.Project
         //browse button
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException("Browse button not implemented yet. DEV MAKE SURE TO MAKE TS WORK!!!!!!!!!!!!!!!!");
+            using (var dialog = new FolderBrowserDialog())
+            {
+                // Initialize starting path
+                if (!string.IsNullOrWhiteSpace(kryptonTextBox4.Text) && Directory.Exists(kryptonTextBox4.Text))
+                {
+                    dialog.SelectedPath = kryptonTextBox4.Text;
+                }
+                else
+                {
+                    dialog.SelectedPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Scratch", "Projects");
+                }
+
+                dialog.Description = "Select a folder to create the project in";
+
+                if (dialog.ShowDialog(this) == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
+                {
+                    kryptonTextBox4.Text = dialog.SelectedPath;
+                }
+            }
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)

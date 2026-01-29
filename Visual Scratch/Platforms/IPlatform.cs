@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Visual_Scratch.Platforms
 {
-    public interface IPlatform 
+    public interface IPlatform
     {
         Core.Project Project { get; set; }
 

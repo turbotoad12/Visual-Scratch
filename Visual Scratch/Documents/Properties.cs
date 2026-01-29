@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Visual_Scratch.Core;
 
 namespace Visual_Scratch.Documents
 {

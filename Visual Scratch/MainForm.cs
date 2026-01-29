@@ -1,11 +1,7 @@
 ﻿using Krypton.Docking;
 using Krypton.Navigator;
-using Krypton.Ribbon;
 using Krypton.Toolkit;
-using Krypton.Workspace;
-using Microsoft.Web.WebView2.WinForms;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -123,10 +119,10 @@ namespace Visual_Scratch
             if (project != null)
             {
                 // Open the main project file (assumed to be .sb3 for now)
-                if (File.Exists(project.Sb3Path))
+                if (File.Exists(Path.Combine(workingDir.FullName, project.Sb3Path)))
                 {
                     currentProject = project;
-                    var sb3Page = NewSb3Editor(project.Sb3Path);
+                    var sb3Page = NewSb3Editor(Path.Combine(workingDir.FullName, project.Sb3Path));
                     State_Project();
                     kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { sb3Page });
                     isProjectLoaded = true;

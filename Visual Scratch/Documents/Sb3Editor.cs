@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.WinForms;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Web.WebView2.WinForms;
-using Microsoft.Web.WebView2.Core;
 
 namespace Visual_Scratch
 {
@@ -113,8 +107,13 @@ namespace Visual_Scratch
         {
             try
             {
+                webView21.CreationProperties = new CoreWebView2CreationProperties
+                {
+                    UserDataFolder = GetUserDataFolder()
+                };
+
                 await webView21.EnsureCoreWebView2Async(null);
-                
+
                 webView21.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
                 webView21.CoreWebView2.Navigate("https://editor.scratchbox.dev/editor.html");
             }
@@ -122,6 +121,17 @@ namespace Visual_Scratch
             {
                 MessageBox.Show($"Failed to initialize Scratch editor: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private static string GetUserDataFolder()
+        {
+            var path = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "Visual Scratch",
+                "WebView2");
+
+            Directory.CreateDirectory(path);
+            return path;
         }
 
         private async void CoreWebView2_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
@@ -151,7 +161,7 @@ namespace Visual_Scratch
                 {
                     webView21.CoreWebView2.NavigationCompleted -= CoreWebView2_NavigationCompleted;
                 }
-                
+
                 if (components != null)
                 {
                     components.Dispose();

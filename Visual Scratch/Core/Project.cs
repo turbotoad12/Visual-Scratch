@@ -157,5 +157,5 @@ namespace Visual_Scratch.Core
             return project;
         }
     }
-    
+
 }

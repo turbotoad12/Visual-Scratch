@@ -4,7 +4,6 @@ using System.IO.Compression;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Visual_Scratch.Platforms
 {
@@ -12,7 +11,7 @@ namespace Visual_Scratch.Platforms
     /// Provides build and metadata functionality for the Nintendo 3DS platform.
     /// Handles Makefile metadata injection for title, description, and author.
     /// </summary>
-    internal class _3DS : IPlatform 
+    internal class _3DS : IPlatform
     {
         /// <summary>
         /// Gets or sets the display title used in the generated 3DS build.
@@ -50,20 +49,32 @@ namespace Visual_Scratch.Platforms
                 throw new InvalidOperationException("Docker is not running. Please start Docker and try again.");
 
             progress.Report(5);
-            
+
             // Run Prepare()
             await Task.Run(() => Prepare(progress), cancellationToken);
 
-            progress.Report(50);
-
             // Run DockerBuild()
-            await Task.Run(() => DockerBuild(cancellationToken), cancellationToken);
+            await Task.Run(() => DockerBuild(progress, cancellationToken), cancellationToken);
         }
 
         public async Task Prepare(IProgress<int> progress)
         {
-            // Assume we are in the project root directory.
-            Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "build", "3DS"));
+            string projectDir = Path.GetDirectoryName(Project?.Sb3Path);
+            if (string.IsNullOrEmpty(projectDir))
+                throw new InvalidOperationException("Project path is invalid.");
+
+            string buildDir = Path.Combine(projectDir, "build", "3DS");
+
+            // Ensure BuildOptions points to the prepared build directory and Dockerfile
+            if (BuildOptions != null)
+            {
+                if (string.IsNullOrEmpty(BuildOptions.InputPath))
+                    BuildOptions.InputPath = buildDir;
+                if (BuildOptions.Dockerfile != null && !Path.IsPathRooted(BuildOptions.Dockerfile.Path))
+                    BuildOptions.Dockerfile.Path = Path.Combine(buildDir, "docker", "Dockerfile.3ds");
+            }
+
+            Directory.CreateDirectory(buildDir);
             progress.Report(10);
 
             // Store Current Directory to return to later
@@ -71,16 +82,17 @@ namespace Visual_Scratch.Platforms
             progress.Report(13);
 
             // Change to build/3DS directory
-            Environment.CurrentDirectory = Path.Combine(originalDirectory, "build", "3DS");
+            Environment.CurrentDirectory = buildDir;
             progress.Report(15);
 
             // Clone the 3DS Scratch Everywhere exporter repository
             string ZipName = await Core.SE.DownloadSEZip(Environment.CurrentDirectory);
-            progress.Report(35);
+            progress.Report(30);
 
             // Clean previous contents and unzip to current directory
             CleanDirectory(Environment.CurrentDirectory, ZipName);
             ZipFile.ExtractToDirectory(ZipName, Environment.CurrentDirectory);
+            progress.Report(40);
             string extractedRoot = null;
             foreach (var dir in Directory.GetDirectories(Environment.CurrentDirectory))
             {
@@ -115,14 +127,15 @@ namespace Visual_Scratch.Platforms
 
                 Directory.Delete(extractedRoot, true);
             }
-            progress.Report(40);
+            progress.Report(50);
 
             // Delete the zip file
             File.Delete(ZipName);
+            progress.Report(55);
 
             // Update Makefile with metadata
             WriteMakeFile(Path.Combine(Environment.CurrentDirectory, "make", "Makefile_3ds"));
-            progress.Report(45);
+            progress.Report(60);
 
             // Move game.sb3 to romfs/project.sb3
             Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "romfs"));
@@ -132,18 +145,22 @@ namespace Visual_Scratch.Platforms
                 Path.Combine(Environment.CurrentDirectory, "romfs", "project.sb3"),
                 true
             );
+            progress.Report(70);
 
             await Task.CompletedTask;
         }
 
-        public async Task DockerBuild(CancellationToken cancellationToken)
+        public async Task DockerBuild(IProgress<int> progress, CancellationToken cancellationToken)
         {
+            progress?.Report(75);
             await Core.Docker.RunDocker(
                 BuildOptions,
                 BuildOptions?.OutputProgress,
                 BuildOptions?.ErrorProgress,
                 cancellationToken
             );
+
+            progress?.Report(95);
 
 
             await Task.CompletedTask;
