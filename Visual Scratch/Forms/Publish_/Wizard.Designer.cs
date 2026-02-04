@@ -94,6 +94,16 @@
             this.kryptonButton1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton1.Values.Text = "Browse";
             // 
+            // kryptonTextBoxLog
+            // 
+            this.kryptonTextBoxLog.Location = new System.Drawing.Point(12, 215);
+            this.kryptonTextBoxLog.Multiline = true;
+            this.kryptonTextBoxLog.Name = "kryptonTextBoxLog";
+            this.kryptonTextBoxLog.ReadOnly = true;
+            this.kryptonTextBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.kryptonTextBoxLog.Size = new System.Drawing.Size(375, 150);
+            this.kryptonTextBoxLog.TabIndex = 12;
+            // 
             // kryptonProgressBar1
             // 
             this.kryptonProgressBar1.Enabled = false;
@@ -104,10 +114,10 @@
             this.kryptonProgressBar1.StateDisabled.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.OneNote;
             this.kryptonProgressBar1.StateNormal.Back.ColorStyle = Krypton.Toolkit.PaletteColorStyle.OneNote;
             this.kryptonProgressBar1.TabIndex = 9;
-            this.kryptonProgressBar1.Text = "kryptonProgressBar1";
             this.kryptonProgressBar1.TextBackdropColor = System.Drawing.Color.Empty;
             this.kryptonProgressBar1.TextShadowColor = System.Drawing.Color.Empty;
-            this.kryptonProgressBar1.Values.Text = "kryptonProgressBar1";
+            this.kryptonProgressBar1.ValueBackColorStyle = Krypton.Toolkit.PaletteColorStyle.GlassTrackingSimple;
+            this.kryptonProgressBar1.Values.Text = "";
             // 
             // kryptonButtonCancel
             // 
@@ -118,16 +128,6 @@
             this.kryptonButtonCancel.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButtonCancel.Values.Text = "Cancel";
             this.kryptonButtonCancel.Click += new System.EventHandler(this.kryptonButtonCancel_Click);
-            // 
-            // kryptonTextBoxLog
-            // 
-            this.kryptonTextBoxLog.Location = new System.Drawing.Point(12, 215);
-            this.kryptonTextBoxLog.Multiline = true;
-            this.kryptonTextBoxLog.Name = "kryptonTextBoxLog";
-            this.kryptonTextBoxLog.ReadOnly = true;
-            this.kryptonTextBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.kryptonTextBoxLog.Size = new System.Drawing.Size(375, 150);
-            this.kryptonTextBoxLog.TabIndex = 12;
             // 
             // Wizard
             // 

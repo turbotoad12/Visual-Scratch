@@ -115,11 +115,39 @@ namespace Visual_Scratch
                 await webView21.EnsureCoreWebView2Async(null);
 
                 webView21.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
+                webView21.CoreWebView2.DownloadStarting += CoreWebView2_DownloadStarting;
                 webView21.CoreWebView2.Navigate("https://editor.scratchbox.dev/editor.html");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to initialize Scratch editor: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CoreWebView2_DownloadStarting(object sender, CoreWebView2DownloadStartingEventArgs e)
+        {
+            try
+            {
+                var targetPath = Sb3FilePath;
+                if (string.IsNullOrWhiteSpace(targetPath))
+                {
+                    var defaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Scratch", "Projects");
+                    Directory.CreateDirectory(defaultDir);
+                    targetPath = Path.Combine(defaultDir, "project.sb3");
+                }
+
+                var dir = Path.GetDirectoryName(targetPath);
+                if (!string.IsNullOrEmpty(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                e.ResultFilePath = targetPath;
+                e.Handled = true;
+            }
+            catch
+            {
+                // If anything goes wrong, let the default download UI handle it.
             }
         }
 
@@ -160,6 +188,7 @@ namespace Visual_Scratch
                 if (webView21?.CoreWebView2 != null)
                 {
                     webView21.CoreWebView2.NavigationCompleted -= CoreWebView2_NavigationCompleted;
+                    webView21.CoreWebView2.DownloadStarting -= CoreWebView2_DownloadStarting;
                 }
 
                 if (components != null)
