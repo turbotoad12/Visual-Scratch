@@ -1,3 +1,5 @@
+# Ts is broken and I wanna work on a new project. Archived!!
+
 # Visual Scratch
 
 A Windows desktop application that provides a modern, integrated development environment for creating and editing Scratch projects (.sb3 files) using the powerful TurboWarp editor.
