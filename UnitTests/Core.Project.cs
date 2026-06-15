@@ -146,7 +146,7 @@ namespace UnitTests
             var tempPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.IO.Path.GetRandomFileName());
             try
             {
-                var project = Visual_Scratch.Core.Project.CreateProject(tempPath, "New Project", "Author Name", "Project Description");
+                var project = Visual_Scratch.Core.Project.CreateProject(new System.IO.DirectoryInfo(tempPath), "New Project", "Author Name", "Project Description");
                 Assert.IsNotNull(project);
                 Assert.AreEqual("New Project", project.Info.Name);
                 Assert.AreEqual("Author Name", project.Info.Author);

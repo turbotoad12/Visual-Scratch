@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
             this.kryptonTextBox1 = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonHeaderGroup1 = new Krypton.Toolkit.KryptonHeaderGroup();
             this.kryptonRichTextBox1 = new Krypton.Toolkit.KryptonRichTextBox();
@@ -48,12 +46,6 @@
             this.kryptonHeaderGroup1.Panel.SuspendLayout();
             this.kryptonHeaderGroup1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // kryptonManager1
-            // 
-            this.kryptonManager1.GlobalPaletteMode = Krypton.Toolkit.PaletteMode.Office2010Blue;
-            this.kryptonManager1.ToolkitStrings.MessageBoxStrings.LessDetails = "L&ess Details...";
-            this.kryptonManager1.ToolkitStrings.MessageBoxStrings.MoreDetails = "&More Details...";
             // 
             // kryptonTextBox1
             // 
@@ -146,6 +138,7 @@
             this.kryptonTextBox4.Size = new System.Drawing.Size(285, 23);
             this.kryptonTextBox4.TabIndex = 10;
             this.kryptonTextBox4.Text = "kryptonTextBox4";
+            this.kryptonTextBox4.TextChanged += new System.EventHandler(this.kryptonTextBox4_TextChanged);
             // 
             // kryptonButton1
             // 
@@ -222,8 +215,6 @@
         }
 
         #endregion
-
-        private Krypton.Toolkit.KryptonManager kryptonManager1;
         /// <summary>
         /// Name Textbox
         /// </summary>

@@ -1,21 +1,21 @@
 ﻿using Krypton.Docking;
 using Krypton.Navigator;
-using Krypton.Ribbon;
 using Krypton.Toolkit;
-using Krypton.Workspace;
-using Microsoft.Web.WebView2.WinForms;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Visual_Scratch.Core;
 using Visual_Scratch.Documents;
 
 namespace Visual_Scratch
 {
     public partial class MainForm : KryptonForm
     {
-
+        private KryptonPage homepage = null;
+        private Project currentProject = null;
+        private bool isProjectLoaded = false;
+        public bool isSaved = true;
         public MainForm()
         {
             InitializeComponent();
@@ -24,6 +24,16 @@ namespace Visual_Scratch
         {
             string name = Path.GetFileNameWithoutExtension(path);
             KryptonPage page = NewPage(name, 0, new Sb3Editor(path));
+
+            // Document pages cannot be docked or auto hidden
+            page.ClearFlags(KryptonPageFlags.DockingAllowAutoHidden | KryptonPageFlags.DockingAllowDocked);
+
+            return page;
+        }
+        private KryptonPage NewPropertiesEditor(string path)
+        {
+            Action<bool> setSaved = (bool saved) => { isSaved = saved; };
+            KryptonPage page = NewPage("Properties", 0, new Documents.Properties(currentProject, setSaved));
 
             // Document pages cannot be docked or auto hidden
             page.ClearFlags(KryptonPageFlags.DockingAllowAutoHidden | KryptonPageFlags.DockingAllowDocked);
@@ -39,7 +49,39 @@ namespace Visual_Scratch
 
             return page;
         }
+        private void State_Project()
+        {
+            // Remove all documents
+            // Remove all documents
+            foreach (KryptonPage page in kryptonDockableWorkspace1.AllPages())
+            {
+                kryptonDockableWorkspace1.ClosePage(page);
+            }
 
+            // Show/Hide ribbon tabs
+            kryptonRibbonTabHome.Visible = true;
+            kryptonRibbonTabProject.Visible = false;
+            kryptonRibbonTabPublish.Visible = true;
+
+            // Configure ribbon for project state
+            kryptonRibbon1.SelectedTab = kryptonRibbonTabHome;
+        }
+        private void State_Home()
+        {
+            // Remove all documents
+            foreach (KryptonPage page in kryptonDockableWorkspace1.AllPages())
+            {
+                kryptonDockableWorkspace1.ClosePage(page);
+            }
+            // Add homepage
+            kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { homepage });
+            // Show/Hide ribbon tabs
+            kryptonRibbonTabHome.Visible = true;
+            kryptonRibbonTabProject.Visible = false;
+            kryptonRibbonTabPublish.Visible = false;
+            // Configure ribbon for home state
+            kryptonRibbon1.SelectedTab = kryptonRibbonTabHome;
+        }
         private KryptonPage NewPage(string name, int image, Control content, Size? autoHiddenSizeHint = null)
         {
             // Create new page with title and image
@@ -69,8 +111,32 @@ namespace Visual_Scratch
 
             // How to add document:  kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewDocument(), NewDocument() });
             // just if you need to show someone doucment: kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { NewDocument("C:/Users/jones/Downloads/Project.sb3") });
-            var homepage = NewHomePage();
+            homepage = NewHomePage();
             kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { homepage });
+        }
+        private void LoadProject(Core.Project project, DirectoryInfo workingDir)
+        {
+            if (project != null)
+            {
+                // Open the main project file (assumed to be .sb3 for now)
+                if (File.Exists(Path.Combine(workingDir.FullName, project.Sb3Path)))
+                {
+                    currentProject = project;
+                    var sb3Page = NewSb3Editor(Path.Combine(workingDir.FullName, project.Sb3Path));
+                    State_Project();
+                    kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { sb3Page });
+                    isProjectLoaded = true;
+                }
+                else
+                {
+                    KryptonMessageBox.Show("Main project file not found", "Error");
+                    State_Home();
+                }
+            }
+            else
+            {
+                KryptonMessageBox.Show("Failed to load project: ", "Error");
+            }
         }
         // Create a project
         private void kryptonRibbonGroupButton1_Click(object sender, EventArgs e)
@@ -80,9 +146,67 @@ namespace Visual_Scratch
             var result = newform.ShowDialog();
             if (result == DialogResult.OK)
             {
-                // Open project here.
+                LoadProject(newform.project, new DirectoryInfo(Environment.CurrentDirectory));
             }
 
+        }
+        // Open an existing project
+        private void kryptonRibbonGroupButton2_Click(object sender, EventArgs e)
+        {
+            // open file dialog to select .vsproj file
+            KryptonOpenFileDialog openFileDialog = new();
+            openFileDialog.Filter = "Visual Scratch Project (*.vsproj)|*.vsproj";
+            openFileDialog.Title = "Open Visual Scratch Project";
+            openFileDialog.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Visual Scratch", "Projects");
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                LoadProject(Core.Project.LoadFromFile(openFileDialog.FileName), new DirectoryInfo(Environment.CurrentDirectory));
+            }
+        }
+        // Open Game Editor
+        private void kryptonRibbonGroupButtonGameEditor_Click(object sender, EventArgs e)
+        {
+            if (isProjectLoaded)
+            {
+                var sb3Page = NewSb3Editor(currentProject.Sb3Path);
+                State_Project();
+                kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { sb3Page });
+            }
+            else
+            {
+                KryptonMessageBox.Show("No project is loaded. Please load a project first.", "Error");
+            }
+        }
+
+        private void kryptonRibbon1_SelectedTabChanged(object sender, EventArgs e)
+        {
+
+        }
+        // Run project in Scratch Everywhere!
+        private void kryptonRibbonGroupButtonPublishRun_Click(object sender, EventArgs e)
+        {
+            SE.LaunchSb3(currentProject.Sb3Path);
+        }
+        // Run Packaging Wizard
+        private void kryptonRibbonGroupButtonPublishPackage_Click(object sender, EventArgs e)
+        {
+            Forms.Publish.Wizard publishform = new();
+            publishform.PublishProject = currentProject;
+            publishform.ShowDialog();
+        }
+        // Properties button
+        private void kryptonRibbonGroupButton4_Click(object sender, EventArgs e)
+        {
+            if (isProjectLoaded)
+            {
+                var propertiesPage = NewPropertiesEditor(currentProject.Sb3Path);
+                State_Project();
+                kryptonDockingManager1.AddToWorkspace(@"Workspace", new[] { propertiesPage });
+            }
+            else
+            {
+                KryptonMessageBox.Show("No project is loaded. Please load a project first.", "Error");
+            }
         }
     }
 }

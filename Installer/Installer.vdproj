@@ -63,6 +63,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2264FFC93FC94A01ABE574FBCD820E75"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2299526AB6062879622A5D229E618A63"
         "OwnerKey" = "8:_B4EE850713AC700B7858F07033C6192B"
         "MsmSig" = "8:_UNDEFINED"
@@ -81,8 +87,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_49C9EA9B93CB4D299ADD2FA2817F5776"
+        "MsmKey" = "8:_35E86F0E96084C21B04035AD3A54E83A"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3849777047D93C2B6046AA8CF9277288"
+        "OwnerKey" = "8:_FE58C0B9209E4E0E96DA07F1980693BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_585C6EAFC23C2C1136852FE4E51223F1"
+        "OwnerKey" = "8:_EDA1B0C3B62BB28F519AD1480FA6762F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -119,6 +137,18 @@
         {
         "MsmKey" = "8:_77260E28CBC6AB1E198A718B9981E618"
         "OwnerKey" = "8:_FE58C0B9209E4E0E96DA07F1980693BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7E182391ADF040068AC1226D4B35ADAC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_807F7B08106F471D9CDD4378BF8C3129"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -273,13 +303,25 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D19A35BB27A1457FBFFCDD2438CEADD2"
+        "MsmKey" = "8:_D31AFB9F373540AA97E3183FBA3905C3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_D732CBE287CCBCFBE896F370CAB20A54"
+        "OwnerKey" = "8:_FE58C0B9209E4E0E96DA07F1980693BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EDA1B0C3B62BB28F519AD1480FA6762F"
+        "OwnerKey" = "8:_3849777047D93C2B6046AA8CF9277288"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EDA1B0C3B62BB28F519AD1480FA6762F"
         "OwnerKey" = "8:_FE58C0B9209E4E0E96DA07F1980693BA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -310,12 +352,6 @@
         "Entry"
         {
         "MsmKey" = "8:_FE58C0B9209E4E0E96DA07F1980693BA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FF3A383D37A64837A178998A730AA580"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -433,6 +469,24 @@
         "OwnerKey" = "8:_C984D6A6F254170336F28CE8A41B9E65"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3849777047D93C2B6046AA8CF9277288"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EDA1B0C3B62BB28F519AD1480FA6762F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_585C6EAFC23C2C1136852FE4E51223F1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -460,10 +514,15 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    "Name" = "8:Microsoft .NET Framework 4.8 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.EdgeRuntime"
+                    {
+                    "Name" = "8:Edge WebView runtime"
+                    "ProductCode" = "8:Microsoft.EdgeRuntime"
                     }
                 }
             }
@@ -477,7 +536,7 @@
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
-        "Compression" = "3:2"
+        "Compression" = "3:1"
         "SignOutput" = "11:FALSE"
         "CertificateFile" = "8:"
         "PrivateKeyFile" = "8:"
@@ -492,10 +551,15 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    "Name" = "8:Microsoft .NET Framework 4.8 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.EdgeRuntime"
+                    {
+                    "Name" = "8:Edge WebView runtime"
+                    "ProductCode" = "8:Microsoft.EdgeRuntime"
                     }
                 }
             }
@@ -590,6 +654,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2264FFC93FC94A01ABE574FBCD820E75"
+            {
+            "SourcePath" = "8:..\\Assets\\Visual Scratch Logo.ico"
+            "TargetName" = "8:Visual Scratch Logo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_9E46897AD8EA4E3FA134A3B3E7CB259E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2299526AB6062879622A5D229E618A63"
             {
             "AssemblyRegister" = "3:1"
@@ -652,12 +736,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49C9EA9B93CB4D299ADD2FA2817F5776"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_35E86F0E96084C21B04035AD3A54E83A"
             {
-            "SourcePath" = "8:..\\..\\..\\Downloads\\Visual Scratch Logo.ico"
-            "TargetName" = "8:Visual Scratch Logo.ico"
+            "SourcePath" = "8:runtimes\\win-x86\\native\\WebView2Loader.dll"
+            "TargetName" = "8:WebView2Loader.dll"
             "Tag" = "8:"
-            "Folder" = "8:_9E46897AD8EA4E3FA134A3B3E7CB259E"
+            "Folder" = "8:_ECAF316398814C8FBAF4F6A168AD0C4F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -670,6 +754,68 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3849777047D93C2B6046AA8CF9277288"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression.ZipFile, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+                "ScatterAssemblies"
+                {
+                    "_3849777047D93C2B6046AA8CF9277288"
+                    {
+                    "Name" = "8:System.IO.Compression.ZipFile.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.ZipFile.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_ECAF316398814C8FBAF4F6A168AD0C4F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_585C6EAFC23C2C1136852FE4E51223F1"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_585C6EAFC23C2C1136852FE4E51223F1"
+                    {
+                    "Name" = "8:System.IO.Compression.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_ECAF316398814C8FBAF4F6A168AD0C4F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_61FD871651FEDE81E538B7FE9DD4E51E"
@@ -763,6 +909,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7E182391ADF040068AC1226D4B35ADAC"
+            {
+            "SourcePath" = "8:scratch-windows.exe"
+            "TargetName" = "8:scratch-windows.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_ECAF316398814C8FBAF4F6A168AD0C4F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_807F7B08106F471D9CDD4378BF8C3129"
+            {
+            "SourcePath" = "8:..\\Assets\\Visual Scratch Logo.png"
+            "TargetName" = "8:Visual Scratch Logo.png"
+            "Tag" = "8:"
+            "Folder" = "8:_9E46897AD8EA4E3FA134A3B3E7CB259E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8CD0FEE52FC6ABA277DC3FB029B77EEB"
@@ -1044,10 +1230,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D19A35BB27A1457FBFFCDD2438CEADD2"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D31AFB9F373540AA97E3183FBA3905C3"
             {
-            "SourcePath" = "8:..\\..\\..\\Downloads\\Visual Scratch Logo JPEG.jpg"
-            "TargetName" = "8:Visual Scratch Logo JPEG.jpg"
+            "SourcePath" = "8:..\\Assets\\Visual Scratch Project File Icon.ico"
+            "TargetName" = "8:Visual Scratch Project File Icon.ico"
             "Tag" = "8:"
             "Folder" = "8:_9E46897AD8EA4E3FA134A3B3E7CB259E"
             "Condition" = "8:"
@@ -1060,7 +1246,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
@@ -1078,6 +1264,37 @@
                     }
                 }
             "SourcePath" = "8:Krypton.Ribbon.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_ECAF316398814C8FBAF4F6A168AD0C4F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EDA1B0C3B62BB28F519AD1480FA6762F"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+                "ScatterAssemblies"
+                {
+                    "_EDA1B0C3B62BB28F519AD1480FA6762F"
+                    {
+                    "Name" = "8:System.IO.Compression.FileSystem.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.FileSystem.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_ECAF316398814C8FBAF4F6A168AD0C4F"
@@ -1126,26 +1343,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF3A383D37A64837A178998A730AA580"
-            {
-            "SourcePath" = "8:..\\..\\..\\Downloads\\Visual Scratch Project Icon.ico"
-            "TargetName" = "8:Visual Scratch Project Icon.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_9E46897AD8EA4E3FA134A3B3E7CB259E"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
         }
         "FileType"
         {
@@ -1155,7 +1352,7 @@
             "Description" = "8:"
             "Extensions" = "8:.vsproj"
             "MIME" = "8:"
-            "Icon" = "8:_FF3A383D37A64837A178998A730AA580"
+            "Icon" = "8:_D31AFB9F373540AA97E3183FBA3905C3"
             "IconIndex" = "3:0"
                 "Command"
                 {
@@ -1248,7 +1445,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Visual Scratch"
         "ProductCode" = "8:{24337304-619A-4C6F-94B1-A106546EAFCD}"
-        "PackageCode" = "8:{ED7852F3-1047-49E9-B573-653D8A24FE89}"
+        "PackageCode" = "8:{EC10FDC9-A8DB-4442-A885-D2BD784EEEEB}"
         "UpgradeCode" = "8:{21DC16C5-D34D-49DB-9D3B-084237C2F032}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -1379,7 +1576,7 @@
             "Target" = "8:_FE58C0B9209E4E0E96DA07F1980693BA"
             "Folder" = "8:_9A32030AFA35454FACB4881573D7A397"
             "WorkingFolder" = "8:_ECAF316398814C8FBAF4F6A168AD0C4F"
-            "Icon" = "8:_49C9EA9B93CB4D299ADD2FA2817F5776"
+            "Icon" = "8:_2264FFC93FC94A01ABE574FBCD820E75"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FE09212B3E1948ED93B1167F7BD4A89B"
@@ -1393,7 +1590,7 @@
             "Target" = "8:_FE58C0B9209E4E0E96DA07F1980693BA"
             "Folder" = "8:_9E5374C8A86D4DD2B2C1E516D2604849"
             "WorkingFolder" = "8:_ECAF316398814C8FBAF4F6A168AD0C4F"
-            "Icon" = "8:_49C9EA9B93CB4D299ADD2FA2817F5776"
+            "Icon" = "8:_2264FFC93FC94A01ABE574FBCD820E75"
             "Feature" = "8:"
             }
         }
@@ -1473,8 +1670,7 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:2"
-                            "Value" = "8:_D19A35BB27A1457FBFFCDD2438CEADD2"
+                            "Setting" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -1518,8 +1714,7 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:2"
-                            "Value" = "8:_D19A35BB27A1457FBFFCDD2438CEADD2"
+                            "Setting" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -1701,8 +1896,7 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:2"
-                            "Value" = "8:_D19A35BB27A1457FBFFCDD2438CEADD2"
+                            "Setting" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "BannerText"
@@ -1958,8 +2152,7 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:2"
-                            "Value" = "8:_D19A35BB27A1457FBFFCDD2438CEADD2"
+                            "Setting" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -2007,8 +2200,7 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:2"
-                            "Value" = "8:_D19A35BB27A1457FBFFCDD2438CEADD2"
+                            "Setting" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -2043,8 +2235,7 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:2"
-                            "Value" = "8:_D19A35BB27A1457FBFFCDD2438CEADD2"
+                            "Setting" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
